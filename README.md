@@ -11,7 +11,7 @@ npm install
 Afterwards you can start the app with:
 
 ```bash
-npm run server
+npm start
 ```
 
 Then will then have a server running at **[http://localhost:3000](http://localhost:3000)** with hot code replacement and live reloading in the browser.
@@ -19,14 +19,25 @@ Then will then have a server running at **[http://localhost:3000](http://localho
 If you want to build a distribution, you have to execute
 
 ```bash
-npm run build
+npm run dist
 ```
 
 You will find the distribution under **/dist**.
 
+You can run the tests with
+
+```bash
+npm test
+```
+
+If you want to develop against the tests with hot reloading, you have to execute
+
+```bash
+npm run test:watch
+```
+
 ## TODOs
 
-* adding test
 * bundling vendor files
 * adding static assets/resources (images, icons, etc.)
 

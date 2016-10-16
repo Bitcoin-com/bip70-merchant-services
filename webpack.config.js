@@ -10,7 +10,7 @@ var METADATA = {
     port: 3000
 };
 
-module.exports = {
+var config = {
     entry: {
         //"vendor": "./src/vendor.ts",
         "index": "./src/index.tsx"
@@ -31,7 +31,7 @@ module.exports = {
 
     resolve: {
         // Add ".ts" and ".tsx" as resolvable extensions.
-        extensions: ["", ".webpack.js", ".web.js", ".ts", ".tsx", ".js"]
+        extensions: ["", ".ts", ".tsx", ".js"]
     },
 
     module: {
@@ -108,3 +108,5 @@ module.exports = {
         "react-dom": "ReactDOM"
     }
 };
+
+module.exports = config;
