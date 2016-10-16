@@ -1,9 +1,6 @@
 var webpack = require("webpack");
-var ExtractTextPlugin = require("extract-text-webpack-plugin");
 var HtmlWebpackPlugin = require("html-webpack-plugin");
 var CopyWebpackPlugin = require('copy-webpack-plugin');
-
-var DIST_PATH = "./dist";
 
 var METADATA = {
     title: "My app",
@@ -87,9 +84,6 @@ module.exports = {
             {from: 'node_modules/react/dist/react-with-addons.js', to: 'react-with-addons.js'},
             {from: 'node_modules/react-dom/dist/react-dom.js', to: 'react-dom.js'}
         ]),
-
-        // extract inline css into separate "styles.css"
-        new ExtractTextPlugin("styles.css"),
 
         new HtmlWebpackPlugin({
             template: "src/index.html",

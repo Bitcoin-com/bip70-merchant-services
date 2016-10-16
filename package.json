@@ -25,7 +25,7 @@
     "clean:all": "npm cache clean && npm run clean:dist && rimraf node_modules",
     "clean:dist": "rimraf dist",
     "build": "npm run clean:dist && webpack --progress --profile --colors --display-error-details --display-cached",
-    "server:dev": "webpack-dev-server --progress --hot --inline --profile --colors --display-error-details --display-cached  --content-base src/"
+    "server": "webpack-dev-server --progress --hot --inline --profile --colors --display-error-details --display-cached  --content-base src/"
   },
   "devDependencies": {
     "typescript": "^2.0.3",
@@ -39,7 +39,6 @@
     "url-loader": "^0.5.7",
     "file-loader": "^0.9.0",
     "source-map-loader": "^0.1.5",
-    "extract-text-webpack-plugin": "^1.0.1",
     "html-webpack-plugin": "^2.22.0",
     "copy-webpack-plugin": "^3.0.1",
     "rimraf": "latest"
