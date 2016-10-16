@@ -1,6 +1,6 @@
 var webpack = require("webpack");
 var HtmlWebpackPlugin = require("html-webpack-plugin");
-var CopyWebpackPlugin = require('copy-webpack-plugin');
+var CopyWebpackPlugin = require("copy-webpack-plugin");
 
 var METADATA = {
     title: "My app",
@@ -19,7 +19,7 @@ module.exports = {
     output: {
         path: "dist",
         filename: "[name].bundle.js",
-        sourceMapFilename: "[name].map",
+        sourceMapFilename: "[name].bundle.map",
         chunkFilename: "[id].chunk.js"
     },
 
@@ -62,14 +62,14 @@ module.exports = {
             {
                 /*
                  * embed images and fonts smaller than 5kb
-                 * 'image-webpack-loader?optimizationLevel=7&..........'
+                 * "image-webpack-loader?optimizationLevel=7&.........."
                  */
                 test: /\.(gif|png|jpg|jpeg|svg)($|\?)/,
-                loaders: ['url?limit=5000&hash=sha512&digest=hex&size=16&name=resources/[name]-[hash].[ext]']
+                loaders: ["url?limit=5000&hash=sha512&digest=hex&size=16&name=resources/[name]-[hash].[ext]"]
             },
             {
                 test: /\.(woff|woff2|eot|ttf)($|\?)/,
-                loaders: ['url?limit=5000&hash=sha512&digest=hex&size=16&name=resources/[name]-[hash].[ext]']
+                loaders: ["url?limit=5000&hash=sha512&digest=hex&size=16&name=resources/[name]-[hash].[ext]"]
             }
         ]
     },
@@ -81,8 +81,8 @@ module.exports = {
 
         // static assets
         new CopyWebpackPlugin([
-            {from: 'node_modules/react/dist/react-with-addons.js', to: 'react-with-addons.js'},
-            {from: 'node_modules/react-dom/dist/react-dom.js', to: 'react-dom.js'}
+            {from: "node_modules/react/dist/react-with-addons.js", to: "react-with-addons.js"},
+            {from: "node_modules/react-dom/dist/react-dom.js", to: "react-dom.js"}
         ]),
 
         new HtmlWebpackPlugin({
