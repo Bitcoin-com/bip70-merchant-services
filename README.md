@@ -14,7 +14,7 @@ Afterwards you can start the app with:
 npm run server
 ```
 
-Then will have a server running at http://localhost:3000 with hot code replacement and live reloading in the browser.
+Then will then have a server running at **[http://localhost:3000](http://localhost:3000)** with hot code replacement and live reloading in the browser.
 
 If you want to build a distribution, you have to execute
 
@@ -22,7 +22,7 @@ If you want to build a distribution, you have to execute
 npm run build
 ```
 
-You will the find the distribution under /dist.
+You will find the distribution under **/dist**.
 
 ## TODOs
 
