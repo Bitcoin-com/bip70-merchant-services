@@ -4,6 +4,10 @@
   "description": "A basic starter for a project build with ReactJS, Typescript, Webpack and Bootstrap",
   "main": "index.js",
   "scripts": {
+    "clean:all": "npm cache clean && npm run clean:dist && rimraf node_modules",
+    "clean:dist": "rimraf dist",
+    "build": "npm run clean:dist && webpack --progress --profile --colors --display-error-details --display-cached",
+    "server": "webpack-dev-server --progress --hot --inline --profile --colors --display-error-details --display-cached  --content-base src/",
     "test": "TBD"
   },
   "repository": {
@@ -21,12 +25,6 @@
   ],
   "author": "Stephan Zerhusen",
   "license": "MIT",
-  "scripts": {
-    "clean:all": "npm cache clean && npm run clean:dist && rimraf node_modules",
-    "clean:dist": "rimraf dist",
-    "build": "npm run clean:dist && webpack --progress --profile --colors --display-error-details --display-cached",
-    "server": "webpack-dev-server --progress --hot --inline --profile --colors --display-error-details --display-cached  --content-base src/"
-  },
   "devDependencies": {
     "typescript": "^2.0.3",
     "webpack": "^1.13.2",
