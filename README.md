@@ -42,9 +42,9 @@ npm run test:watch
 
 The following technologies are used for writing and running tests:
 
-* Test Runner: [KarmaJS](https://karma-runner.github.io)
+* Test runner: [KarmaJS](https://karma-runner.github.io)
 * Headless WebKit browser: [PhantomJS](http://phantomjs.org)
-* Testing Framework: [MochaJS](https://mochajs.org)
+* Testing framework: [MochaJS](https://mochajs.org)
 * BDD / TDD assertion library: [ChaiJS](http://chaijs.com)
 * Library for spies, stubs and mocks: [SinonJS](http://sinonjs.org)
 
