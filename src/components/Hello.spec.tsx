@@ -1,6 +1,6 @@
 import * as React from "react";
 import * as TestUtils from "react-addons-test-utils";
-import {Hello, HelloProps} from "./Hello";
+import {Hello} from "./Hello";
 
 describe("Hello Component", () => {
     let renderer: TestUtils.ShallowRenderer;
