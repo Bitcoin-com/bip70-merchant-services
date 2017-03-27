@@ -1,8 +1,5 @@
-import * as React from "react";
-import * as ReactDOM from "react-dom";
+import "index.less";
 import {Hello} from "./components/Hello";
-
-import "./index.less";
 
 ReactDOM.render(
     <Hello compiler="TypeScript" framework="React"/>,

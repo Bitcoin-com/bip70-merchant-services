@@ -1,17 +1,18 @@
 const path = require('path');
-const CopyWebpackPlugin = require('copy-webpack-plugin');
+// const CopyWebpackPlugin = require('copy-webpack-plugin');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
+// const ExtractTextPlugin = require("extract-text-webpack-plugin");
 const METADATA = require('./metadata.js');
 
 module.exports = function (env) {
     return {
-        entry: './src/index.ts',
+        entry: './src/index.tsx',
 
         output: {
             path: path.resolve(__dirname, '../dist'),
-            filename: METADATA.pluginName + '[name].bundle.js',
-            sourceMapFilename: "[name].bundle.map",
-            chunkFilename: "[id].chunk.js"
+            filename: 'my-app.bundle.js'//,
+            //sourceMapFilename: 'my-app.bundle.map'
+            //chunkFilename: '[id].chunk.js'
         },
 
         module: {
@@ -54,20 +55,43 @@ module.exports = function (env) {
                 {
                     test: /\.tsx?$/,
                     loader: 'ts-loader',
+                    options: {
+                        transpileOnly: true
+                    },
                     exclude: /node_modules/
+                },
+                {
+                    test: /\.less$/,
+                    use: [
+                        {
+                            loader: "style-loader"
+                        },
+                        {
+                            loader: "css-loader",
+                            options: {
+                                sourceMap: true
+                            }
+                        },
+                        {
+                            loader: "less-loader",
+                            options: {
+                                sourceMap: true
+                            }
+                        }
+                    ]
                 }
             ]
         },
 
         resolve: {
-            extensions: ['.tsx', '.ts', '.js']
+            extensions: ['.tsx', '.ts', '.js', '.less']
         },
 
         plugins: [
             // static assets
-            new CopyWebpackPlugin([
-                {from: './node_modules/jquery/dist/jquery.js', to: './lib/jquery.js'}
-            ]),
+            // new CopyWebpackPlugin([
+            //     {from: './node_modules/jquery/dist/jquery.js', to: './lib/jquery.js'}
+            // ]),
 
             // insert bundled script and metadata into index.html
             new HtmlWebpackPlugin({
