@@ -1,20 +1,15 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-    <title><%= webpackConfig.metadata.title %></title>
+    <title><%= htmlWebpackPlugin.options.metadata.title %></title>
 
     <meta charset="UTF-8"/>
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="description" content="<%= webpackConfig.metadata.description %>">
+    <meta name="description" content="<%= htmlWebpackPlugin.options.metadata.description %>">
 
-    <!-- base url -->
-    <base href="<%= webpackConfig.metadata.baseUrl %>">
 </head>
 <body>
 <div id="app">loading app ...</div>
-
-<script type="text/javascript" src="react-with-addons.js"></script>
-<script type="text/javascript" src="react-dom.js"></script>
 </body>
 </html>

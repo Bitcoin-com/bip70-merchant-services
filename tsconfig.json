@@ -1,19 +1,21 @@
 {
   "compilerOptions": {
-    "outDir": "./dist/",
+    "baseUrl": "",
+    "declaration": false,
+    "emitDecoratorMetadata": true,
+    "experimentalDecorators": true,
+    "lib": [
+      "es2016",
+      "dom"
+    ],
+    "mapRoot": "./",
+    "module": "es2015",
+    "moduleResolution": "node",
+    "outDir": "./dist/out-tsc",
     "sourceMap": true,
-    "noImplicitAny": true,
-    "module": "commonjs",
     "target": "es5",
-    "jsx": "react"
-  },
-  "filesGlob": [
-    "./src/**/*.tsx"
-  ],
-  "exclude": [
-    "node_modules"
-  ],
-  "atom": {
-    "rewriteTsconfig": false
+    "typeRoots": [
+      "./node_modules/@types"
+    ]
   }
 }

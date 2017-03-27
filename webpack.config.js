@@ -13,7 +13,7 @@ var METADATA = {
 var config = {
     entry: {
         //"vendor": "./src/vendor.ts",
-        "index": "./src/index.tsx"
+        "index": "./src/index.ts"
     },
 
     output: {

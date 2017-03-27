@@ -9,7 +9,9 @@ module.exports = function (env) {
 
         output: {
             path: path.resolve(__dirname, '../dist'),
-            filename: METADATA.pluginName + '.jquery.js'
+            filename: METADATA.pluginName + '[name].bundle.js',
+            sourceMapFilename: "[name].bundle.map",
+            chunkFilename: "[id].chunk.js"
         },
 
         module: {
