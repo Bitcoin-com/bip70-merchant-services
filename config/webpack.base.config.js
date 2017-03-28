@@ -1,3 +1,4 @@
+const webpack = require("webpack");
 const path = require('path');
 // const CopyWebpackPlugin = require('copy-webpack-plugin');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
@@ -6,13 +7,13 @@ const METADATA = require('./metadata.js');
 
 module.exports = function (env) {
     return {
-        entry: './src/index.tsx',
+        entry: {
+            app: './src/index.tsx'
+        },
 
         output: {
             path: path.resolve(__dirname, '../dist'),
-            filename: 'my-app.bundle.js'//,
-            //sourceMapFilename: 'my-app.bundle.map'
-            //chunkFilename: '[id].chunk.js'
+            filename: '[name].[chunkhash].js'
         },
 
         module: {
@@ -93,6 +94,12 @@ module.exports = function (env) {
             //     {from: './node_modules/jquery/dist/jquery.js', to: './lib/jquery.js'}
             // ]),
 
+            // providing the lib dependencies so that they are present in the global scope
+            new webpack.ProvidePlugin({
+                React: 'react',
+                ReactDOM: 'react-dom'
+            }),
+
             // insert bundled script and metadata into index.html
             new HtmlWebpackPlugin({
                 template: 'src/index.html',
@@ -100,16 +107,5 @@ module.exports = function (env) {
                 metadata: METADATA
             })
         ]
-
-        // When importing a module whose path matches one of the following, just
-        // assume a corresponding global variable exists and use that instead.
-        // This is important because it allows us to avoid bundling all of our
-        // dependencies, which allows browsers to cache those libraries between builds.
-        // externals: {
-        //     // require('jquery') is external and available
-        //     //  on the global var jQuery
-        //     'jquery': 'jQuery',
-        //     '$': 'jQuery'
-        // }
     }
 };

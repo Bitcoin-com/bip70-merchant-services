@@ -1,7 +1,7 @@
 // Karma configuration
 // based on https://medium.com/@fay_jai/getting-started-on-testing-with-typescript-reactjs-and-webpack-a45a72f4f603#.1bxgmsozo
 // and https://github.com/AngularClass/angular2-webpack-starter/blob/master/config/karma.conf.js
-const webpackConfig = require('./webpack.config.js')('dev');
+const webpackConfig = require('./webpack.config.js')('test');
 
 module.exports = function (config) {
     config.set({
