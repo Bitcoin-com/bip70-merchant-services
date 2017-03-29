@@ -7,7 +7,7 @@ export interface HelloProps {
 
 export class Hello extends React.Component<HelloProps, any> {
 
-   // this contructor is necessary to make the props work
+   // this constructor is necessary to make the props work
    constructor(props: HelloProps, context: any) {
       super(props, context);
    }
