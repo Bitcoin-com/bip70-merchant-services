@@ -1,9 +1,10 @@
 const webpack = require("webpack");
 const path = require('path');
-// const CopyWebpackPlugin = require('copy-webpack-plugin');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
-// const ExtractTextPlugin = require("extract-text-webpack-plugin");
+const ExtractTextPlugin = require('extract-text-webpack-plugin');
 const METADATA = require('./metadata.js');
+
+const extractLESSPlugin = new ExtractTextPlugin('css/[name].[contenthash].css');
 
 module.exports = function (env) {
     return {
@@ -63,33 +64,26 @@ module.exports = function (env) {
                 },
                 {
                     test: /\.less$/,
-                    use: [
-                        {
-                            loader: "style-loader"
-                        },
-                        {
-                            loader: "css-loader",
-                            options: {
-                                sourceMap: true
-                            }
-                        },
-                        {
-                            loader: "less-loader",
-                            options: {
-                                sourceMap: true
-                            }
-                        }
-                    ]
+                    use: extractLESSPlugin.extract({
+                        fallback: 'style-loader',
+                        use: [
+                            'css-loader',
+                            'less-loader'
+                        ],
+                        // fix wrong path generation in css file
+                        // http://stackoverflow.com/questions/37277700/separate-fonts-and-css-using-webpack/37293335#37293335
+                        publicPath: '../'
+                    })
                 },
                 {
                     test: /\.(gif|png|jpg|jpeg|svg)($|\?)/,
                     // embed images and fonts smaller than 5kb
-                    loader: 'url-loader?limit=5000&hash=sha512&digest=hex&size=16&name=resources/[name]-[hash].[ext]'
+                    loader: 'url-loader?limit=5000&hash=sha512&digest=hex&size=16&name=images/[name]-[hash].[ext]'
                 },
                 {
                     test: /\.(woff|woff2|eot|ttf)($|\?)/,
                     // embed images and fonts smaller than 5kb
-                    loader: 'url-loader?limit=5000&hash=sha512&digest=hex&size=16&name=resources/[name]-[hash].[ext]'
+                    loader: 'url-loader?limit=5000&hash=sha512&digest=hex&size=16&name=fonts/[name]-[hash].[ext]'
                 }
             ]
         },
@@ -99,16 +93,13 @@ module.exports = function (env) {
         },
 
         plugins: [
-            // static assets
-            // new CopyWebpackPlugin([
-            //     {from: './node_modules/jquery/dist/jquery.js', to: './lib/jquery.js'}
-            // ]),
-
             // providing the lib dependencies so that they are present in the global scope
             new webpack.ProvidePlugin({
                 React: 'react',
                 ReactDOM: 'react-dom'
             }),
+
+            extractLESSPlugin,
 
             // insert bundled script and metadata into index.html
             new HtmlWebpackPlugin({

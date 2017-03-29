@@ -4,5 +4,6 @@ const METADATA = require('./metadata.js');
 
 module.exports = function (env) {
     return webpackMerge(baseConfig(), {
+        // chunk plugin doesn't work here
     })
 };
