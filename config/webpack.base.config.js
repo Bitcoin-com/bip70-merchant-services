@@ -82,18 +82,14 @@ module.exports = function (env) {
                     ]
                 },
                 {
-                    /*
-                     * embed images and fonts smaller than 5kb
-                     * "image-webpack-loader?optimizationLevel=7&.........."
-                     */
                     test: /\.(gif|png|jpg|jpeg|svg)($|\?)/,
-                    //loaders: ["url?limit=5000&hash=sha512&digest=hex&size=16&name=resources/[name]-[hash].[ext]"]
-                    loader: 'url-loader'
+                    // embed images and fonts smaller than 5kb
+                    loader: 'url-loader?limit=5000&hash=sha512&digest=hex&size=16&name=resources/[name]-[hash].[ext]'
                 },
                 {
                     test: /\.(woff|woff2|eot|ttf)($|\?)/,
-                    //loaders: ["url?limit=5000&hash=sha512&digest=hex&size=16&name=resources/[name]-[hash].[ext]"]
-                    loader: 'url-loader'
+                    // embed images and fonts smaller than 5kb
+                    loader: 'url-loader?limit=5000&hash=sha512&digest=hex&size=16&name=resources/[name]-[hash].[ext]'
                 }
             ]
         },
