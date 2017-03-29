@@ -88,12 +88,12 @@ module.exports = function (env) {
                      */
                     test: /\.(gif|png|jpg|jpeg|svg)($|\?)/,
                     //loaders: ["url?limit=5000&hash=sha512&digest=hex&size=16&name=resources/[name]-[hash].[ext]"]
-                    loader: 'resolve-url-loader'
+                    loader: 'url-loader'
                 },
                 {
                     test: /\.(woff|woff2|eot|ttf)($|\?)/,
                     //loaders: ["url?limit=5000&hash=sha512&digest=hex&size=16&name=resources/[name]-[hash].[ext]"]
-                    loader: 'resolve-url-loader'
+                    loader: 'url-loader'
                 }
             ]
         },
