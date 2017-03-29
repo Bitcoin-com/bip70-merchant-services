@@ -54,7 +54,7 @@ The following technologies are used for writing and running tests:
 * adding static assets/resources (images, icons, etc.)
 * adding react-router
 
-##Creator
+## Creator
 
 **Stephan Zerhusen**
 
