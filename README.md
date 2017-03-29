@@ -22,8 +22,14 @@ Then will then have a server running at **[http://localhost:3000](http://localho
 If you want to build a distribution, you have to execute
 
 ```bash
-npm run dist
+npm run build:dev
 ```
+or
+```bash
+npm run build:prod
+```
+
+In the prod distribution all js- and css-files are uglified and there are no source maps.
 
 You will find the distribution under **/dist**.
 
@@ -46,11 +52,9 @@ The following technologies are used for writing and running tests:
 * Headless WebKit browser: [PhantomJS](http://phantomjs.org)
 * Testing framework: [Jasmine](https://jasmine.github.io/)
 
-## TODOs
+## External resources
 
-* bundling vendor files
-* adding static assets/resources (images, icons, etc.)
-* adding react-router
+* A short book about React and Typescript: [Hello React and TypeScript](https://charleslbryant.gitbooks.io/hello-react-and-typescript/content/index.html)
 
 ## Creator
 
