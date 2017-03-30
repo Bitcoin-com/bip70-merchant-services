@@ -63,7 +63,7 @@ The following technologies are used for writing and running tests:
 * <https://twitter.com/stzerhus>
 * <https://github.com/szerhusenBC>
 
-##Copyright and license
+## Copyright and license
 
 The code is released under the [MIT license](LICENSE?raw=true).
 
