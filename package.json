@@ -1,7 +1,7 @@
 {
   "name": "bip70-merchant-services",
   "version": "0.1.0",
-  "description": "",
+  "description": "Web GUI for bip70 merchant services",
   "main": "index.js",
   "scripts": {
     "clean:all": "npm cache clean && npm run clean:dist && rimraf node_modules",
