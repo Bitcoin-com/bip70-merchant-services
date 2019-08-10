@@ -128,3 +128,5 @@ dist
 out-tsc
 src/**/*.jsx
 src/**/*.js
+
+lint-reports/*

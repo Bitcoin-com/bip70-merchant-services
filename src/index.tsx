@@ -7,15 +7,15 @@
 // import root less file here as an entry point for all other less files. these are imported
 // in index.less (including bootstrap).
 // You can also import less files in other tsx files instead of importing them in index.less.
-import "./index.less";
+import "./index.less"
 
 // import "React" here to prevent the error "TS2686 [...]refers to a UMD global[...]"
-import * as React from "react";
-import * as ReactDOM from "react-dom";
+import * as React from "react"
+import * as ReactDOM from "react-dom"
 
-import {Hello} from "./components/Hello";
+import { BIP70 } from "./components/BIP70"
 
 ReactDOM.render(
-    <Hello compiler="TypeScript" framework="ReactJS"/>,
-    document.getElementById("app")
-);
+  <BIP70 compiler="TypeScript" framework="ReactJS" />,
+  document.getElementById("app")
+)
