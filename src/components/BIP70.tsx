@@ -46,7 +46,11 @@ export class BIP70 extends React.Component<BIP70Props, any> {
     if (this.state.status === "paid" || this.state.status === "open") {
       needHelp = (
         <p>
-          <a href="https://developer.bitcoin.com" target="_blank">
+          <a
+            className="brandGreen"
+            href="https://developer.bitcoin.com"
+            target="_blank"
+          >
             Need Help?
           </a>
         </p>
@@ -56,11 +60,11 @@ export class BIP70 extends React.Component<BIP70Props, any> {
         <div id="open">
           <div className="row">
             <div className="col-md-3">
-              <span className="glyphicon glyphicon-copy" />
+              <span className="brandGreen glyphicon glyphicon-copy" />
             </div>
             <div className="col-md-6">0.003133 BCH</div>
             <div className="col-md-3">
-              <span className="glyphicon glyphicon-off" />
+              <span className="brandGreen glyphicon glyphicon-off" />
             </div>
           </div>
           <p>QR CODE</p>
@@ -113,7 +117,7 @@ export class BIP70 extends React.Component<BIP70Props, any> {
         </h2>
         <div id="poweredBy">
           <p>
-            <span className="glyphicon glyphicon-lock" />
+            <span className="brandGreen glyphicon glyphicon-lock" />
           </p>
           <p>Powered by </p>
           <p>
