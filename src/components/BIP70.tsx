@@ -31,7 +31,7 @@ export class BIP70 extends React.Component<BIP70Props, any> {
       ],
       time: "2019-08-08T05:36:19.643Z",
       expires: "2019-08-08T05:51:19.643Z",
-      status: "open",
+      status: "expired",
       merchantId: "00000000-0000-0000-0000-000000000000",
       memo: "Payment request for invoice F7MvZJhNm2VJEsMTjtMCHX",
       fiatSymbol: "BCH",
@@ -42,27 +42,38 @@ export class BIP70 extends React.Component<BIP70Props, any> {
   }
 
   render() {
-    return (
-      <div className="container">
-        <div className="info">
-          <h1>{this.state.memo}</h1>
-          <h2>{this.state.merchantId}</h2>
-        </div>
+    let needHelp
+    if (this.state.status !== "expired") {
+      needHelp = (
         <p>
           <a href="https://developer.bitcoin.com" target="_blank">
             Need Help?
           </a>
         </p>
-        <div className="jumbotron">
-          <h1>
-            Hello from{" "}
-            <span className="myCustomStyleClass">{this.props.compiler}</span>{" "}
-            and {this.props.framework}!
-          </h1>
-          <p>
-            Here is a fantastic Glyphicon{" "}
-            <span className="glyphicon glyphicon-ok" />
-          </p>
+      )
+    }
+
+    return (
+      <div className="container">
+        <div className="info">
+          <h1>{this.state.memo}</h1>
+          <h2>{this.state.merchantId}</h2>
+          {needHelp}
+        </div>
+        <div className="jumbotron card">
+          <div id="open">
+            <h1>
+              Hello from{" "}
+              <span className="myCustomStyleClass">{this.props.compiler}</span>{" "}
+              and {this.props.framework}!
+            </h1>
+            <p>
+              Here is a fantastic Glyphicon{" "}
+              <span className="glyphicon glyphicon-ok" />
+            </p>
+          </div>
+
+          <div id="expired">EXPIRED</div>
         </div>
         <h2>
           <button>Badger Button</button>
