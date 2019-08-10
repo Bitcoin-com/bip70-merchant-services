@@ -17,13 +17,31 @@
 
   .card {
     background: white;
+    color: #757575;
     box-shadow: 0 0 14px 6px rgba(0, 0, 0, 0.05);
-    padding: 3%;
-    margin-left: auto;
-    margin-right: auto;
+    padding: 3% 3% 2% 3%;
     width: 40%;
     border-radius: 0.75em;
     margin: 2% auto;
+
+    .cardTitle {
+      font-size: 1.3em;
+      margin-bottom: 0.8em;
+    }
+
+    .cardText {
+      margin-bottom: 2em;
+    }
+
+    #expired {
+      #invoiceIdLabel {
+        margin-bottom: 0;
+      }
+
+      #invoiceId {
+        font-weight: 500;
+      }
+    }
   }
 }
 .myCustomStyleClass {

@@ -71,13 +71,15 @@ export class BIP70 extends React.Component<BIP70Props, any> {
           <p>
             <span className="glyphicon glyphicon-remove" />
           </p>
-          <p>Invoice Expired</p>
-          <p>
+          <p className="cardTitle">Invoice Expired</p>
+          <p className="cardText">
             An invoice is only valid for 15 minutes. Return to the merchant if
             you would like to resubmit a payment.
           </p>
-          <p>Invoice ID</p>
-          <p className="strong">{this.state.paymentId}</p>
+          <p id="invoiceIdLabel">Invoice ID</p>
+          <p id="invoiceId" className="cardText">
+            {this.state.paymentId}
+          </p>
           <p>
             <a href="https://developer.bitcoin.com" target="_blank">
               Try Again
