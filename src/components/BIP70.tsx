@@ -31,9 +31,9 @@ export class BIP70 extends React.Component<BIP70Props, any> {
       ],
       time: "2019-08-08T05:36:19.643Z",
       expires: "2019-08-08T05:51:19.643Z",
-      status: "open",
-      merchantId: "00000000-0000-0000-0000-000000000000",
-      memo: "Payment request for invoice F7MvZJhNm2VJEsMTjtMCHX",
+      status: "expired",
+      merchantId: "Bitcoin Donation",
+      memo: "Wikimedia Foundation",
       fiatSymbol: "BCH",
       fiatRate: 1,
       paymentUrl: "https://pay.bitcoin.com/i/F7MvZJhNm2VJEsMTjtMCHX",
@@ -42,7 +42,7 @@ export class BIP70 extends React.Component<BIP70Props, any> {
   }
 
   render() {
-    let needHelp, open, expired, paid
+    let needHelp, open, expired, paid, badgerButton
     if (this.state.status === "paid" || this.state.status === "open") {
       needHelp = (
         <p>
@@ -68,6 +68,12 @@ export class BIP70 extends React.Component<BIP70Props, any> {
             </div>
           </div>
           <p>QR CODE</p>
+        </div>
+      )
+
+      badgerButton = (
+        <div>
+          <button>Badger Button</button>
         </div>
       )
     } else if (this.state.status === "paid") {
@@ -112,9 +118,7 @@ export class BIP70 extends React.Component<BIP70Props, any> {
           {paid}
           {expired}
         </div>
-        <h2>
-          <button>Badger Button</button>
-        </h2>
+        {badgerButton}
         <div id="poweredBy">
           <p>
             <span className="brandGreen glyphicon glyphicon-lock" />
