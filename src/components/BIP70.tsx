@@ -42,7 +42,7 @@ export class BIP70 extends React.Component<BIP70Props, any> {
   }
 
   render() {
-    let needHelp
+    let needHelp, open, expired
     if (this.state.status !== "expired") {
       needHelp = (
         <p>
@@ -50,6 +50,40 @@ export class BIP70 extends React.Component<BIP70Props, any> {
             Need Help?
           </a>
         </p>
+      )
+
+      open = (
+        <div id="open">
+          <h1>
+            Hello from{" "}
+            <span className="myCustomStyleClass">{this.props.compiler}</span>{" "}
+            and {this.props.framework}!
+          </h1>
+          <p>
+            Here is a fantastic Glyphicon{" "}
+            <span className="glyphicon glyphicon-ok" />
+          </p>
+        </div>
+      )
+    } else {
+      expired = (
+        <div id="expired">
+          <p>
+            <span className="glyphicon glyphicon-remove" />
+          </p>
+          <p>Invoice Expired</p>
+          <p>
+            An invoice is only valid for 15 minutes. Return to the merchant if
+            you would like to resubmit a payment.
+          </p>
+          <p>Invoice ID</p>
+          <p className="strong">{this.state.paymentId}</p>
+          <p>
+            <a href="https://developer.bitcoin.com" target="_blank">
+              Try Again
+            </a>
+          </p>
+        </div>
       )
     }
 
@@ -60,20 +94,9 @@ export class BIP70 extends React.Component<BIP70Props, any> {
           <h2>{this.state.merchantId}</h2>
           {needHelp}
         </div>
-        <div className="jumbotron card">
-          <div id="open">
-            <h1>
-              Hello from{" "}
-              <span className="myCustomStyleClass">{this.props.compiler}</span>{" "}
-              and {this.props.framework}!
-            </h1>
-            <p>
-              Here is a fantastic Glyphicon{" "}
-              <span className="glyphicon glyphicon-ok" />
-            </p>
-          </div>
-
-          <div id="expired">EXPIRED</div>
+        <div className="card">
+          {open}
+          {expired}
         </div>
         <h2>
           <button>Badger Button</button>
