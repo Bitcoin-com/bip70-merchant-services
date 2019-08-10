@@ -31,7 +31,7 @@ export class BIP70 extends React.Component<BIP70Props, any> {
       ],
       time: "2019-08-08T05:36:19.643Z",
       expires: "2019-08-08T05:51:19.643Z",
-      status: "expired",
+      status: "open",
       merchantId: "00000000-0000-0000-0000-000000000000",
       memo: "Payment request for invoice F7MvZJhNm2VJEsMTjtMCHX",
       fiatSymbol: "BCH",
@@ -42,8 +42,8 @@ export class BIP70 extends React.Component<BIP70Props, any> {
   }
 
   render() {
-    let needHelp, open, expired
-    if (this.state.status !== "expired") {
+    let needHelp, open, expired, paid
+    if (this.state.status === "paid" || this.state.status === "open") {
       needHelp = (
         <p>
           <a href="https://developer.bitcoin.com" target="_blank">
@@ -54,18 +54,25 @@ export class BIP70 extends React.Component<BIP70Props, any> {
 
       open = (
         <div id="open">
-          <h1>
-            Hello from{" "}
-            <span className="myCustomStyleClass">{this.props.compiler}</span>{" "}
-            and {this.props.framework}!
-          </h1>
-          <p>
-            Here is a fantastic Glyphicon{" "}
-            <span className="glyphicon glyphicon-ok" />
-          </p>
+          <div className="row">
+            <div className="col-md-3">
+              <span className="glyphicon glyphicon-copy" />
+            </div>
+            <div className="col-md-6">0.003133 BCH</div>
+            <div className="col-md-3">
+              <span className="glyphicon glyphicon-off" />
+            </div>
+          </div>
+          <p>QR CODE</p>
         </div>
       )
-    } else {
+    } else if (this.state.status === "paid") {
+      paid = (
+        <div id="paid">
+          <p>PAID</p>
+        </div>
+      )
+    } else if (this.state.status === "expired") {
       expired = (
         <div id="expired">
           <p>
@@ -98,6 +105,7 @@ export class BIP70 extends React.Component<BIP70Props, any> {
         </div>
         <div className="card">
           {open}
+          {paid}
           {expired}
         </div>
         <h2>
