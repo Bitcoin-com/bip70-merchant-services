@@ -89,7 +89,7 @@ export class Open extends React.Component<OpenProps, any> {
             <span>View Payment Details</span>
           </ReactTooltip>
         </div>
-        <div className="row" id="qr">
+        <div className="row" id="qr" onClick={this.toggleUrlPopOver}>
           <p className="col-md-12">
             <img src={QR} alt="QR Code" />
           </p>
