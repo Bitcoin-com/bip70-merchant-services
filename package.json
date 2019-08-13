@@ -31,10 +31,12 @@
   "dependencies": {
     "@types/react": "~15.0.20",
     "@types/react-dom": "~0.14.23",
-    "bootstrap": "~3.3.7",
-    "react": "~15.4.2",
-    "react-dom": "~15.4.2",
-    "react-tooltip": "^3.10.0"
+    "bootstrap": "~4.2.1",
+    "bootstrap-less": "^3.3.8",
+    "react": "^16.5.2",
+    "react-dom": "^16.5.2",
+    "react-tooltip": "^3.10.0",
+    "reactstrap": "^7.0.2"
   },
   "devDependencies": {
     "typescript": "~2.2.1",
