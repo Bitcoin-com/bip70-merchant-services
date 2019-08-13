@@ -1,6 +1,8 @@
 import * as React from "react"
 import QR from "../qr.png"
 import ReactTooltip from "react-tooltip"
+import { Copied } from "./Copied"
+import { Details } from "./Details"
 
 export interface OpenProps {
   paymentUrl: string
@@ -16,7 +18,7 @@ export class Open extends React.Component<OpenProps, any> {
   render() {
     return (
       <div id="open">
-        <div className="row">
+        <div className="row" id="openHeader">
           <div data-tip data-for="copy" className="col-md-2">
             <i className="brandGreen far fa-copy" />
           </div>
@@ -36,18 +38,8 @@ export class Open extends React.Component<OpenProps, any> {
             <img src={QR} alt="QR Code" />
           </p>
         </div>
-        <div id="copied" className="brandGreenBackground row">
-          <div className="col-md-1" />
-          <div className="col-md-10">
-            <p id="clipboard">
-              <i className="fas fa-clipboard" />
-            </p>
-
-            <p id="copiedTitle">Copied Payment URL</p>
-            <p>{this.props.paymentUrl}</p>
-          </div>
-          <div className="col-md-1" />
-        </div>
+        <Copied paymentUrl={this.props.paymentUrl} />
+        <Details />
       </div>
     )
   }
