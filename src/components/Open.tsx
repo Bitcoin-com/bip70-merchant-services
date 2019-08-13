@@ -1,6 +1,7 @@
 import * as React from "react"
 import QR from "../qr.png"
 import ReactTooltip from "react-tooltip"
+import ReactCountdownClock from "react-countdown-clock"
 import { Copied } from "./Copied"
 import { Details } from "./Details"
 
@@ -69,7 +70,13 @@ export class Open extends React.Component<OpenProps, any> {
             className="col-md-2"
             onClick={this.toggleDetailsPopOver}
           >
-            <span className="brandGreen glyphicon glyphicon-off" />
+            <ReactCountdownClock
+              seconds={900}
+              color="#0ac18e"
+              alpha={0.9}
+              size={50}
+              onComplete={this.toggleDetailsPopOver}
+            />
           </div>
           <ReactTooltip id="details" effect="solid" type="dark" place="top">
             <span>View Payment Details</span>

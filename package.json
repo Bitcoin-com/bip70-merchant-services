@@ -34,6 +34,7 @@
     "bootstrap": "~4.2.1",
     "bootstrap-less": "^3.3.8",
     "react": "^16.5.2",
+    "react-countdown-clock": "^2.6.0",
     "react-dom": "^16.5.2",
     "react-tooltip": "^3.10.0",
     "reactstrap": "^7.0.2"
