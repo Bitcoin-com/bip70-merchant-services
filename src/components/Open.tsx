@@ -7,6 +7,7 @@ import { Details } from "./Details"
 
 import { Popover, PopoverHeader, PopoverBody } from "reactstrap"
 export interface OpenProps {
+  amount: number
   paymentUrl: string
   toggleStatus: Function
 }
@@ -69,7 +70,7 @@ export class Open extends React.Component<OpenProps, any> {
           <ReactTooltip id="copy" effect="solid" type="dark" place="top">
             <span>Copy Payment URL</span>
           </ReactTooltip>
-          <div className="col-md-8">0.003133 BCH</div>
+          <div className="col-md-8">{this.props.amount} BCH</div>
           <div
             data-tip
             data-for="details"
@@ -77,7 +78,7 @@ export class Open extends React.Component<OpenProps, any> {
             onClick={this.toggleDetailsPopOver}
           >
             <ReactCountdownClock
-              seconds={1}
+              seconds={1000}
               color="#0ac18e"
               alpha={0.9}
               size={50}

@@ -1,9 +1,7 @@
 import * as React from "react"
 import Logo from "../logo.png"
 
-export interface PoweredByProps {
-  paymentUrl: string
-}
+export interface PoweredByProps {}
 
 export class PoweredBy extends React.Component<PoweredByProps, any> {
   // this constructor is necessary to make the props work

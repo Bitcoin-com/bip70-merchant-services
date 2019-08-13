@@ -1,10 +1,8 @@
 import * as React from "react"
-import { Expired } from "./Expired"
-import { Paid } from "./Paid"
-import { Open } from "./Open"
-import { NeedHelp } from "./NeedHelp"
 import { BadgerButton } from "./BadgerButton"
 import { PoweredBy } from "./PoweredBy"
+import { Card } from "./Card"
+import { Info } from "./Info"
 
 export interface BIP70Props {
   compiler: string
@@ -18,35 +16,30 @@ export class BIP70 extends React.Component<BIP70Props, any> {
     this.toggleStatus = this.toggleStatus.bind(this)
     this.state = {
       network: "main",
-      currency: "SLP",
+      currency: "BCH",
       outputs: [
         {
-          script:
-            "6a04534c500001010453454e44204de69e374a8ed21cbddd47f2338cc0f479dc58daa2bbe11cd604ca488eca0ddf08000000001dcd6500",
-          amount: 0,
-          token_id:
-            "4de69e374a8ed21cbddd47f2338cc0f479dc58daa2bbe11cd604ca488eca0ddf",
-          send_amounts: [500000000],
-          type: "SLP"
+          script: "76a914018a532856c45d74f7d67112547596a03819077188ac",
+          amount: 7500,
+          address: "199PArEUmwmcch2LsjxVpegDXsomKdgYi",
+          type: "P2PKH"
         },
         {
-          script: "76a914eed376878448bf27739ecf8497752f2b4033d60388ac",
-          amount: 546,
-          address: "1Nmo9N3ZVsL8GFrv6uNfr55a9ni4RoT7Fn",
+          script: "76a9145d02663da9af3acde02fcd138abd998ab9edd56d88ac",
+          amount: 10500,
+          address: "19UniZ1obAjU1tgUydYLzhyvaMignd1oNE",
           type: "P2PKH"
         }
       ],
-      time: "2019-08-08T05:36:19.643Z",
-      expires: "2019-08-08T05:51:19.643Z",
+      time: "2019-08-13T19:08:24.672Z",
+      expires: "2019-08-13T19:23:24.672Z",
       status: "open",
       merchantId: "00000000-0000-0000-0000-000000000000",
-      // merchantId: "Bitcoin Donation",
-      // memo: "Wikimedia Foundation",
-      memo: "Payment request for invoice E1BifGbS9wCHBKopaGE38Z",
+      memo: "Payment request for invoice Ejw1vDyG4VELGKa3LMYnJa",
       fiatSymbol: "BCH",
       fiatRate: 1,
-      paymentUrl: "https://pay.bitcoin.com/i/F7MvZJhNm2VJEsMTjtMCHX",
-      paymentId: "F7MvZJhNm2VJEsMTjtMCHX"
+      paymentUrl: "https://pay.bitcoin.com/i/Ejw1vDyG4VELGKa3LMYnJa",
+      paymentId: "Ejw1vDyG4VELGKa3LMYnJa"
     }
   }
 
@@ -57,36 +50,25 @@ export class BIP70 extends React.Component<BIP70Props, any> {
   }
 
   render() {
-    let needHelp, open, expired, paid, badgerButton
+    let badgerButton
     if (this.state.status === "open") {
-      needHelp = <NeedHelp />
-
-      open = (
-        <Open
-          toggleStatus={this.toggleStatus}
-          paymentUrl={this.state.paymentUrl}
-        />
-      )
-
       badgerButton = <BadgerButton />
-    } else if (this.state.status === "paid") {
-      paid = <Paid />
-    } else if (this.state.status === "expired") {
-      expired = <Expired paymentId={this.state.paymentId} />
     }
 
     return (
       <div className="container">
-        <div className="info">
-          <h1>{this.state.memo}</h1>
-          <h2>{this.state.merchantId}</h2>
-          {needHelp}
-        </div>
-        <div className="card">
-          {open}
-          {paid}
-          {expired}
-        </div>
+        <Info
+          status={this.state.status}
+          memo={this.state.memo}
+          merchantId={this.state.merchantId}
+        />
+        <Card
+          amount={this.state.outputs[0].amount}
+          status={this.state.status}
+          paymentUrl={this.state.paymentUrl}
+          paymentId={this.state.paymentId}
+          toggleStatus={this.toggleStatus}
+        />
         {badgerButton}
         <PoweredBy />
       </div>
