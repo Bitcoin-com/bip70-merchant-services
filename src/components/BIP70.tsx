@@ -3,6 +3,8 @@ import { BadgerButton } from "./BadgerButton"
 import { PoweredBy } from "./PoweredBy"
 import { Card } from "./Card"
 import { Info } from "./Info"
+import axios from "axios"
+
 // import txSampleData from "./bchTxSampleData"
 import txSampleData from "./slpTxSampleData"
 
@@ -18,14 +20,23 @@ export class BIP70 extends React.Component<BIP70Props, any> {
     this.state = txSampleData
   }
 
-  componentDidMount() {
+  async componentDidMount() {
     let totalAmount: number = 0
     if (this.state.currency === "BCH") {
+      this.setState({
+        symbol: "BCH"
+      })
       this.state.outputs.forEach((output: any) => {
         totalAmount += output.amount
       })
     } else if (this.state.currency === "SLP") {
       totalAmount = this.state.outputs[0].send_amounts
+      const response = await axios.get(
+        `https://rest.bitcoin.com/v2/slp/list/${this.state.outputs[0].token_id}`
+      )
+      this.setState({
+        symbol: response.data.symbol
+      })
     }
     this.setState({
       totalAmount: totalAmount
@@ -57,7 +68,7 @@ export class BIP70 extends React.Component<BIP70Props, any> {
           paymentUrl={this.state.paymentUrl}
           paymentId={this.state.paymentId}
           toggleStatus={this.toggleStatus}
-          fiatSymbol={this.state.fiatSymbol}
+          symbol={this.state.symbol}
         />
         {badgerButton}
         <PoweredBy />

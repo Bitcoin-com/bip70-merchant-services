@@ -8,7 +8,7 @@ export interface OpenProps {
   amount: number
   paymentUrl: string
   toggleStatus: Function
-  fiatSymbol: string
+  symbol: string
 }
 
 export class Open extends React.Component<OpenProps, any> {
@@ -70,7 +70,7 @@ export class Open extends React.Component<OpenProps, any> {
             <span>Copy Payment URL</span>
           </ReactTooltip>
           <div className="col-md-8">
-            {this.props.amount} {this.props.fiatSymbol}
+            {this.props.amount} {this.props.symbol}
           </div>
           <div
             data-tip

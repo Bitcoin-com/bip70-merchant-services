@@ -9,7 +9,7 @@ export interface CardProps {
   paymentUrl: string
   toggleStatus: Function
   paymentId: string
-  fiatSymbol: string
+  symbol: string
 }
 
 export class Card extends React.Component<CardProps, any> {
@@ -26,7 +26,7 @@ export class Card extends React.Component<CardProps, any> {
           amount={this.props.amount}
           toggleStatus={this.props.toggleStatus}
           paymentUrl={this.props.paymentUrl}
-          fiatSymbol={this.props.fiatSymbol}
+          symbol={this.props.symbol}
         />
       )
     } else if (this.state.status === "paid") {
