@@ -55,7 +55,7 @@ export class BIP70 extends React.Component<BIP70Props, any> {
       // open
       needHelp = <NeedHelp />
 
-      open = <Open />
+      open = <Open paymentUrl={this.state.paymentUrl} />
 
       badgerButton = <BadgerButton />
     } else if (this.state.status === "paid") {

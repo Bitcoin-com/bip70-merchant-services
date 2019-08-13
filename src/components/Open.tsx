@@ -2,7 +2,9 @@ import * as React from "react"
 import QR from "../qr.png"
 import ReactTooltip from "react-tooltip"
 
-export interface OpenProps {}
+export interface OpenProps {
+  paymentUrl: string
+}
 
 export class Open extends React.Component<OpenProps, any> {
   // this constructor is necessary to make the props work
@@ -29,9 +31,23 @@ export class Open extends React.Component<OpenProps, any> {
             <span>View Payment Details</span>
           </ReactTooltip>
         </div>
-        <p>
-          <img src={QR} alt="QR Code" />
-        </p>
+        <div className="row">
+          <p className="col-md-12">
+            <img src={QR} alt="QR Code" />
+          </p>
+        </div>
+        <div id="copied" className="brandGreenBackground row">
+          <div className="col-md-1" />
+          <div className="col-md-10">
+            <p id="clipboard">
+              <i className="fas fa-clipboard" />
+            </p>
+
+            <p id="copiedTitle">Copied Payment URL</p>
+            <p>{this.props.paymentUrl}</p>
+          </div>
+          <div className="col-md-1" />
+        </div>
       </div>
     )
   }
