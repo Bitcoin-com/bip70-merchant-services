@@ -18,6 +18,20 @@ export class BIP70 extends React.Component<BIP70Props, any> {
     this.state = txSampleData
   }
 
+  componentDidMount() {
+    let totalAmount: number = 0
+    if (this.state.currency === "BCH") {
+      this.state.outputs.forEach((output: any) => {
+        totalAmount += output.amount
+      })
+    } else if (this.state.currency === "SLP") {
+      totalAmount = this.state.outputs[0].send_amounts
+    }
+    this.setState({
+      totalAmount: totalAmount
+    })
+  }
+
   toggleStatus() {
     this.setState({
       status: "expired"
@@ -38,11 +52,12 @@ export class BIP70 extends React.Component<BIP70Props, any> {
           merchantId={this.state.merchantId}
         />
         <Card
-          amount={this.state.outputs[0].amount}
+          amount={this.state.totalAmount}
           status={this.state.status}
           paymentUrl={this.state.paymentUrl}
           paymentId={this.state.paymentId}
           toggleStatus={this.toggleStatus}
+          fiatSymbol={this.state.fiatSymbol}
         />
         {badgerButton}
         <PoweredBy />

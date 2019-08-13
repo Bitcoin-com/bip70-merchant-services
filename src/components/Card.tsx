@@ -9,10 +9,10 @@ export interface CardProps {
   paymentUrl: string
   toggleStatus: Function
   paymentId: string
+  fiatSymbol: string
 }
 
 export class Card extends React.Component<CardProps, any> {
-  // this constructor is necessary to make the props work
   constructor(props: CardProps, context: any) {
     super(props, context)
     this.state = {}
@@ -26,6 +26,7 @@ export class Card extends React.Component<CardProps, any> {
           amount={this.props.amount}
           toggleStatus={this.props.toggleStatus}
           paymentUrl={this.props.paymentUrl}
+          fiatSymbol={this.props.fiatSymbol}
         />
       )
     } else if (this.state.status === "paid") {
