@@ -8,6 +8,7 @@ import { Details } from "./Details"
 import { Popover, PopoverHeader, PopoverBody } from "reactstrap"
 export interface OpenProps {
   paymentUrl: string
+  toggleStatus: Function
 }
 
 export class Open extends React.Component<OpenProps, any> {
@@ -16,6 +17,7 @@ export class Open extends React.Component<OpenProps, any> {
     super(props, context)
     this.toggleUrlPopOver = this.toggleUrlPopOver.bind(this)
     this.toggleDetailsPopOver = this.toggleDetailsPopOver.bind(this)
+    this.toggleStatus = this.toggleStatus.bind(this)
     this.state = {
       urlPopoverOpen: false,
       detailsPopoverOpen: false
@@ -48,6 +50,10 @@ export class Open extends React.Component<OpenProps, any> {
     }
   }
 
+  toggleStatus() {
+    this.props.toggleStatus()
+  }
+
   render() {
     return (
       <div id="open">
@@ -71,11 +77,11 @@ export class Open extends React.Component<OpenProps, any> {
             onClick={this.toggleDetailsPopOver}
           >
             <ReactCountdownClock
-              seconds={900}
+              seconds={1}
               color="#0ac18e"
               alpha={0.9}
               size={50}
-              onComplete={this.toggleDetailsPopOver}
+              onComplete={this.toggleStatus}
             />
           </div>
           <ReactTooltip id="details" effect="solid" type="dark" place="top">

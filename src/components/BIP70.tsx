@@ -4,7 +4,7 @@ import { Paid } from "./Paid"
 import { Open } from "./Open"
 import { NeedHelp } from "./NeedHelp"
 import { BadgerButton } from "./BadgerButton"
-import Logo from "../logo.png"
+import { PoweredBy } from "./PoweredBy"
 
 export interface BIP70Props {
   compiler: string
@@ -15,6 +15,7 @@ export class BIP70 extends React.Component<BIP70Props, any> {
   // this constructor is necessary to make the props work
   constructor(props: BIP70Props, context: any) {
     super(props, context)
+    this.toggleStatus = this.toggleStatus.bind(this)
     this.state = {
       network: "main",
       currency: "SLP",
@@ -49,20 +50,28 @@ export class BIP70 extends React.Component<BIP70Props, any> {
     }
   }
 
+  toggleStatus() {
+    this.setState({
+      status: "expired"
+    })
+  }
+
   render() {
     let needHelp, open, expired, paid, badgerButton
     if (this.state.status === "open") {
-      // open
       needHelp = <NeedHelp />
 
-      open = <Open paymentUrl={this.state.paymentUrl} />
+      open = (
+        <Open
+          toggleStatus={this.toggleStatus}
+          paymentUrl={this.state.paymentUrl}
+        />
+      )
 
       badgerButton = <BadgerButton />
     } else if (this.state.status === "paid") {
-      // paid
       paid = <Paid />
     } else if (this.state.status === "expired") {
-      // expired
       expired = <Expired paymentId={this.state.paymentId} />
     }
 
@@ -79,17 +88,7 @@ export class BIP70 extends React.Component<BIP70Props, any> {
           {expired}
         </div>
         {badgerButton}
-        <div id="poweredBy">
-          <p>
-            <span className="brandGreen glyphicon glyphicon-lock" />
-          </p>
-          <p>Powered by </p>
-          <p>
-            <a href="https://www.bitcoin.com/" className="universal-menu-link">
-              <img src={Logo} alt="Bitcoin.com" />
-            </a>
-          </p>
-        </div>
+        <PoweredBy />
       </div>
     )
   }
