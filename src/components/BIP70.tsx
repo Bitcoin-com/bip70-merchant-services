@@ -1,4 +1,9 @@
 import * as React from "react"
+import { Expired } from "./Expired"
+import { Paid } from "./Paid"
+import { Open } from "./Open"
+import { NeedHelp } from "./NeedHelp"
+import { BadgerButton } from "./BadgerButton"
 
 export interface BIP70Props {
   compiler: string
@@ -43,67 +48,19 @@ export class BIP70 extends React.Component<BIP70Props, any> {
 
   render() {
     let needHelp, open, expired, paid, badgerButton
-    if (this.state.status === "paid" || this.state.status === "open") {
-      needHelp = (
-        <p>
-          <a
-            className="brandGreen"
-            href="https://developer.bitcoin.com"
-            target="_blank"
-          >
-            Need Help?
-          </a>
-        </p>
-      )
+    if (this.state.status === "open") {
+      // open
+      needHelp = <NeedHelp />
 
-      open = (
-        <div id="open">
-          <div className="row">
-            <div className="col-md-3">
-              <span className="brandGreen glyphicon glyphicon-copy" />
-            </div>
-            <div className="col-md-6">0.003133 BCH</div>
-            <div className="col-md-3">
-              <span className="brandGreen glyphicon glyphicon-off" />
-            </div>
-          </div>
-          <p>QR CODE</p>
-        </div>
-      )
+      open = <Open />
 
-      badgerButton = (
-        <div>
-          <button>Badger Button</button>
-        </div>
-      )
+      badgerButton = <BadgerButton />
     } else if (this.state.status === "paid") {
-      paid = (
-        <div id="paid">
-          <p>PAID</p>
-        </div>
-      )
+      // paid
+      paid = <Paid />
     } else if (this.state.status === "expired") {
-      expired = (
-        <div id="expired">
-          <p>
-            <span className="glyphicon glyphicon-remove" />
-          </p>
-          <p className="cardTitle">Invoice Expired</p>
-          <p className="cardText">
-            An invoice is only valid for 15 minutes. Return to the merchant if
-            you would like to resubmit a payment.
-          </p>
-          <p id="invoiceIdLabel">Invoice ID</p>
-          <p id="invoiceId" className="cardText">
-            {this.state.paymentId}
-          </p>
-          <p>
-            <a href="https://developer.bitcoin.com" target="_blank">
-              Try Again
-            </a>
-          </p>
-        </div>
-      )
+      // expired
+      expired = <Expired />
     }
 
     return (
