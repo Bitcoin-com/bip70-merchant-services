@@ -1,4 +1,5 @@
 import * as React from "react"
+import QR from "../qr.png"
 
 export interface OpenProps {}
 
@@ -21,7 +22,9 @@ export class Open extends React.Component<OpenProps, any> {
             <span className="brandGreen glyphicon glyphicon-off" />
           </div>
         </div>
-        <p>QR CODE</p>
+        <p>
+          <img src={QR} alt="QR Code" />
+        </p>
       </div>
     )
   }

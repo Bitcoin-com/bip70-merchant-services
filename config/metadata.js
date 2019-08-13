@@ -1,5 +1,5 @@
 const METADATA = {
-  title: "bip70-merchant-services",
+  title: "Bitcoin.com Invoice",
   description: "Web GUI for bip 70 merchant services",
   host: "localhost",
   port: 3000

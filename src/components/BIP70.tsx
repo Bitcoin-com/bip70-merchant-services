@@ -37,7 +37,7 @@ export class BIP70 extends React.Component<BIP70Props, any> {
       ],
       time: "2019-08-08T05:36:19.643Z",
       expires: "2019-08-08T05:51:19.643Z",
-      status: "expired",
+      status: "paid",
       merchantId: "Bitcoin Donation",
       memo: "Wikimedia Foundation",
       fiatSymbol: "BCH",

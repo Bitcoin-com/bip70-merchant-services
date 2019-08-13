@@ -12,7 +12,16 @@ export class Paid extends React.Component<PaidProps, any> {
   render() {
     return (
       <div id="paid">
-        <p>PAID</p>
+        <p>
+          <span className="glyphicon glyphicon-ok" />
+        </p>
+        <p className="cardTitle">Success!</p>
+        <p className="cardText">You have fully paid the invoice.</p>
+        <p>
+          <a href="https://www.bitcoin.com/" className="universal-menu-link">
+            All Done
+          </a>
+        </p>
       </div>
     )
   }
