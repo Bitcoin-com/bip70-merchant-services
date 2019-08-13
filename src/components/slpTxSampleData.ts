@@ -1,4 +1,4 @@
-let slpTxSampleData = {
+export default {
   network: "main",
   currency: "SLP",
   outputs: [
@@ -28,5 +28,3 @@ let slpTxSampleData = {
   paymentUrl: "https://pay.bitcoin.com/i/D1amXHzcqBoK9VPYXLV9FF",
   paymentId: "D1amXHzcqBoK9VPYXLV9FF"
 }
-
-export default slpTxSampleData

@@ -2,8 +2,6 @@ import * as React from "react"
 import QR from "../qr.png"
 import ReactTooltip from "react-tooltip"
 import ReactCountdownClock from "react-countdown-clock"
-import { Copied } from "./Copied"
-import { Details } from "./Details"
 
 import { Popover, PopoverHeader, PopoverBody } from "reactstrap"
 export interface OpenProps {

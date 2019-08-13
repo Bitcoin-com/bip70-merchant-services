@@ -3,8 +3,8 @@ import { BadgerButton } from "./BadgerButton"
 import { PoweredBy } from "./PoweredBy"
 import { Card } from "./Card"
 import { Info } from "./Info"
-import bchTxSampleData from "./bchTxSampleData"
-// import slpTxSampleData from "./slpTxSampleData"
+// import txSampleData from "./bchTxSampleData"
+import txSampleData from "./slpTxSampleData"
 
 export interface BIP70Props {
   compiler: string
@@ -15,7 +15,7 @@ export class BIP70 extends React.Component<BIP70Props, any> {
   constructor(props: BIP70Props, context: any) {
     super(props, context)
     this.toggleStatus = this.toggleStatus.bind(this)
-    this.state = bchTxSampleData
+    this.state = txSampleData
   }
 
   toggleStatus() {

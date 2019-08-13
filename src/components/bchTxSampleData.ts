@@ -1,4 +1,4 @@
-let bchTxSampleData = {
+export default {
   network: "main",
   currency: "BCH",
   outputs: [
@@ -25,5 +25,3 @@ let bchTxSampleData = {
   paymentUrl: "https://pay.bitcoin.com/i/Ejw1vDyG4VELGKa3LMYnJa",
   paymentId: "Ejw1vDyG4VELGKa3LMYnJa"
 }
-
-export default bchTxSampleData
