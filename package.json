@@ -29,11 +29,12 @@
   "author": "Gabriel Cardona <gabriel@bitcoin.com>",
   "license": "MIT",
   "dependencies": {
-    "react": "~15.4.2",
     "@types/react": "~15.0.20",
-    "react-dom": "~15.4.2",
     "@types/react-dom": "~0.14.23",
-    "bootstrap": "~3.3.7"
+    "bootstrap": "~3.3.7",
+    "react": "~15.4.2",
+    "react-dom": "~15.4.2",
+    "react-tooltip": "^3.10.0"
   },
   "devDependencies": {
     "typescript": "~2.2.1",
