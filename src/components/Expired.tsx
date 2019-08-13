@@ -1,6 +1,8 @@
 import * as React from "react"
 
-export interface ExpiredProps {}
+export interface ExpiredProps {
+  paymentId: string
+}
 
 export class Expired extends React.Component<ExpiredProps, any> {
   // this constructor is necessary to make the props work
@@ -22,7 +24,7 @@ export class Expired extends React.Component<ExpiredProps, any> {
         </p>
         <p id="invoiceIdLabel">Invoice ID</p>
         <p id="invoiceId" className="cardText">
-          {this.state.paymentId}
+          {this.props.paymentId}
         </p>
         <p>
           <a href="https://developer.bitcoin.com" target="_blank">
