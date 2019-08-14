@@ -12,6 +12,7 @@ export interface CardProps {
   symbol: string
   time: string
   expires: string
+  qr: string
 }
 
 export class Card extends React.Component<CardProps, any> {
@@ -36,6 +37,7 @@ export class Card extends React.Component<CardProps, any> {
           symbol={this.props.symbol}
           time={this.props.time}
           expires={this.props.expires}
+          qr={this.props.qr}
         />
       )
     } else if (this.props.status === "paid") {

@@ -1,5 +1,5 @@
 import * as React from "react"
-import QR from "../qr.png"
+// import QR from "../qr.png"
 import ReactTooltip from "react-tooltip"
 import ReactCountdownClock from "react-countdown-clock"
 import { Copied } from "./Copied"
@@ -14,6 +14,7 @@ export interface OpenProps {
   symbol: string
   time: string
   expires: string
+  qr: string
 }
 
 export class Open extends React.Component<OpenProps, any> {
@@ -26,7 +27,7 @@ export class Open extends React.Component<OpenProps, any> {
     this.toggleStatus = this.toggleStatus.bind(this)
     // calculate time
     let then = new Date(this.props.expires)
-    let now = new Date(this.props.time)
+    let now = new Date()
     let diff = then.getTime() - now.getTime()
     let seconds = diff / 1000
     let secondsBetweenDates = Math.abs(seconds)
@@ -132,7 +133,7 @@ export class Open extends React.Component<OpenProps, any> {
         <CopyToClipboard text={this.props.paymentUrl}>
           <div className="row" id="qr" onClick={this.toggleUrlPopOver}>
             <p className="col-md-12">
-              <img src={QR} alt="QR Code" />
+              <img src={this.props.qr} alt="QR Code" />
             </p>
           </div>
         </CopyToClipboard>
