@@ -22,7 +22,7 @@ export class BIP70 extends React.Component<BIP70Props, any> {
 
   async componentDidMount() {
     const invoice = await axios.get(
-      "https://pay.bitcoin.com/s/Bo3c2MyU3ubhMTresTLt8G",
+      "https://pay.bitcoin.com/s/EWe9kqdfnV2CnLNyxP9Fc9",
       {
         headers: {"Accept": "application/json"}
       }
@@ -31,11 +31,6 @@ export class BIP70 extends React.Component<BIP70Props, any> {
     this.setState(invoice.data)
     this.setState({
       qr: `https://pay.bitcoin.com/qr/${this.state.paymentId}`
-    })
-    const now = new Date()
-    const expires = new Date(this.state.expires)
-    this.setState({
-      ttl: (expires.getTime() - now.getTime()) / 1000
     })
     let totalAmount: number = 0
     if (this.state.currency === "BCH") {

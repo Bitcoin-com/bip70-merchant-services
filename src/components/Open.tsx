@@ -27,7 +27,7 @@ export class Open extends React.Component<OpenProps, any> {
     this.toggleStatus = this.toggleStatus.bind(this)
     // calculate time
     let then = new Date(this.props.expires)
-    let now = new Date(this.props.time)
+    let now = new Date()
     let diff = then.getTime() - now.getTime()
     let seconds = diff / 1000
     let secondsBetweenDates = Math.abs(seconds)
