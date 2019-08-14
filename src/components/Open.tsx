@@ -43,11 +43,11 @@ export class Open extends React.Component<OpenProps, any> {
       this.setState({
         detailsPopoverOpen: !this.state.detailsPopoverOpen
       })
-      setTimeout(() => {
-        this.setState({
-          detailsPopoverOpen: !this.state.detailsPopoverOpen
-        })
-      }, 3000)
+      // setTimeout(() => {
+      //   this.setState({
+      //     detailsPopoverOpen: !this.state.detailsPopoverOpen
+      //   })
+      // }, 3000)
     }
   }
 
@@ -102,7 +102,7 @@ export class Open extends React.Component<OpenProps, any> {
           isOpen={this.state.urlPopoverOpen}
           target="popOver"
           toggle={this.toggleUrlPopOver}
-          fade={true}
+          fade="true"
           className="urlPopOver"
         >
           <PopoverBody>
@@ -114,30 +114,43 @@ export class Open extends React.Component<OpenProps, any> {
           isOpen={this.state.detailsPopoverOpen}
           target="popOver"
           toggle={this.toggleDetailsPopOver}
+          className="detailsPopOver"
         >
           <PopoverHeader>
-            <div id="detailsHeader">
-              <div id="" className="row">
-                Please send your payment within 3:45
+            <div id="detailsHeader" className="row">
+              <div className="col-md-12">
+                <p id="" className="">
+                  Please send your payment within 3:45
+                </p>
               </div>
-              <div id="" className="row">
-                1 BCH = $345.67
+              <div className="col-md-12">
+                <p id="" className="">
+                  1 BCH = $345.67
+                </p>
               </div>
             </div>
           </PopoverHeader>
           <PopoverBody>
-            <div id="detailsBody">
-              <div id="" className="row">
-                <div className="col-md-12">Subtotal 0.01 BCH</div>
-                <div id="" className="row">
+            <div id="detailsBody" className="row">
+              <div className="col-md-12">
+                <p id="" className="">
+                  Subtotal 0.01 BCH
+                </p>
+              </div>
+              <div className="col-md-12">
+                <p id="" className="">
                   Network Cost 0.01 BCH
-                </div>
-                <div id="" className="row">
+                </p>
+              </div>
+              <div className="col-md-12">
+                <p id="" className="">
                   Total 0.01 BCH
-                </div>
-                <div id="" className="row">
+                </p>
+              </div>
+              <div className="col-md-12">
+                <p id="" className="">
                   Copy Payment URL
-                </div>
+                </p>
               </div>
             </div>
           </PopoverBody>
