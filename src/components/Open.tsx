@@ -2,6 +2,7 @@ import * as React from "react"
 import QR from "../qr.png"
 import ReactTooltip from "react-tooltip"
 import ReactCountdownClock from "react-countdown-clock"
+import { Copied } from "./Copied"
 
 import { Popover, PopoverHeader, PopoverBody } from "reactstrap"
 export interface OpenProps {
@@ -101,9 +102,12 @@ export class Open extends React.Component<OpenProps, any> {
           isOpen={this.state.urlPopoverOpen}
           target="popOver"
           toggle={this.toggleUrlPopOver}
+          fade={true}
+          className="urlPopOver"
         >
-          <PopoverHeader>Copied Payment URL</PopoverHeader>
-          <PopoverBody>{this.props.paymentUrl}</PopoverBody>
+          <PopoverBody>
+            <Copied paymentUrl={this.props.paymentUrl} />
+          </PopoverBody>
         </Popover>
         <Popover
           placement="top"
