@@ -15,7 +15,12 @@ export interface CardProps {
 export class Card extends React.Component<CardProps, any> {
   constructor(props: CardProps, context: any) {
     super(props, context)
+    this.toggleStatus = this.toggleStatus.bind(this)
     this.state = {}
+  }
+
+  toggleStatus() {
+    this.props.toggleStatus()
   }
 
   render() {
@@ -24,14 +29,14 @@ export class Card extends React.Component<CardProps, any> {
       open = (
         <Open
           amount={this.props.amount}
-          toggleStatus={this.props.toggleStatus}
+          toggleStatus={this.toggleStatus}
           paymentUrl={this.props.paymentUrl}
           symbol={this.props.symbol}
         />
       )
-    } else if (this.state.status === "paid") {
+    } else if (this.props.status === "paid") {
       paid = <Paid />
-    } else if (this.state.status === "expired") {
+    } else if (this.props.status === "expired") {
       expired = <Expired paymentId={this.props.paymentId} />
     }
     return (

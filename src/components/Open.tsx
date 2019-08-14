@@ -91,7 +91,7 @@ export class Open extends React.Component<OpenProps, any> {
             onClick={this.toggleDetailsPopOver}
           >
             <ReactCountdownClock
-              seconds={1000}
+              seconds={1}
               color="#0ac18e"
               alpha={0.9}
               size={50}
