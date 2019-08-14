@@ -8,6 +8,12 @@ import axios from "axios"
 import { CopyToClipboard } from "react-copy-to-clipboard"
 import Countdown from "react-countdown-now"
 import { AxiosResponse } from "axios"
+import { css } from "@emotion/core"
+import { CircleLoader } from "react-spinners"
+const override = css`
+  display: block;
+  margin: 0 auto;
+`
 
 export interface OpenProps {
   amount: number
@@ -38,7 +44,8 @@ export class Open extends React.Component<OpenProps, any> {
       detailsPopoverOpen: false,
       limitPopoverOpen: false,
       BCHPrice: 0,
-      secondsBetweenDates: then.getTime()
+      secondsBetweenDates: then.getTime(),
+      loading: true
     }
   }
 
@@ -47,7 +54,8 @@ export class Open extends React.Component<OpenProps, any> {
       `https://index-api.bitcoin.com/api/v0/cash/price/usd`
     )
     this.setState({
-      BCHPrice: response.data.price / 100
+      BCHPrice: response.data.price / 100,
+      loading: false
     })
   }
 
@@ -69,11 +77,11 @@ export class Open extends React.Component<OpenProps, any> {
       this.setState({
         detailsPopoverOpen: !this.state.detailsPopoverOpen
       })
-      // setTimeout(() => {
-      //   this.setState({
-      //     detailsPopoverOpen: !this.state.detailsPopoverOpen
-      //   })
-      // }, 3000)
+      setTimeout(() => {
+        this.setState({
+          detailsPopoverOpen: !this.state.detailsPopoverOpen
+        })
+      }, 3000)
     }
   }
 
@@ -82,11 +90,11 @@ export class Open extends React.Component<OpenProps, any> {
       this.setState({
         limitPopoverOpen: !this.state.limitPopoverOpen
       })
-      // setTimeout(() => {
-      //   this.setState({
-      //     limitPopoverOpen: !this.state.limitPopoverOpen
-      //   })
-      // }, 3000)
+      setTimeout(() => {
+        this.setState({
+          limitPopoverOpen: !this.state.limitPopoverOpen
+        })
+      }, 3000)
     }
   }
 
@@ -97,6 +105,13 @@ export class Open extends React.Component<OpenProps, any> {
   render(): JSX.Element {
     return (
       <div id="open">
+        <CircleLoader
+          css={override}
+          sizeUnit={"px"}
+          size={150}
+          color="#0ac18e"
+          loading={this.state.loading}
+        />
         <div className="row" id="openHeader">
           <CopyToClipboard text={this.props.paymentUrl}>
             <div
