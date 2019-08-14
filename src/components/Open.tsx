@@ -12,21 +12,30 @@ export interface OpenProps {
   paymentUrl: string
   toggleStatus: Function
   symbol: string
+  time: string
+  expires: string
 }
 
 export class Open extends React.Component<OpenProps, any> {
-  popOverElement
+  popOverElement: HTMLDivElement
   constructor(props: OpenProps, context: any) {
     super(props, context)
     this.toggleUrlPopOver = this.toggleUrlPopOver.bind(this)
     this.toggleDetailsPopOver = this.toggleDetailsPopOver.bind(this)
     this.toggleLimitPopOver = this.toggleLimitPopOver.bind(this)
     this.toggleStatus = this.toggleStatus.bind(this)
+    // calculate time
+    let then = new Date(this.props.expires)
+    let now = new Date(this.props.time)
+    let diff = then.getTime() - now.getTime()
+    let seconds = diff / 1000
+    let secondsBetweenDates = Math.abs(seconds)
     this.state = {
       urlPopoverOpen: false,
       detailsPopoverOpen: false,
       limitPopoverOpen: false,
-      BCHPrice: 0
+      BCHPrice: 0,
+      secondsBetweenDates: secondsBetweenDates
     }
   }
 
@@ -57,11 +66,11 @@ export class Open extends React.Component<OpenProps, any> {
       this.setState({
         detailsPopoverOpen: !this.state.detailsPopoverOpen
       })
-      setTimeout(() => {
-        this.setState({
-          detailsPopoverOpen: !this.state.detailsPopoverOpen
-        })
-      }, 3000)
+      // setTimeout(() => {
+      //   this.setState({
+      //     detailsPopoverOpen: !this.state.detailsPopoverOpen
+      //   })
+      // }, 3000)
     }
   }
 
@@ -70,11 +79,11 @@ export class Open extends React.Component<OpenProps, any> {
       this.setState({
         limitPopoverOpen: !this.state.limitPopoverOpen
       })
-      setTimeout(() => {
-        this.setState({
-          limitPopoverOpen: !this.state.limitPopoverOpen
-        })
-      }, 3000)
+      // setTimeout(() => {
+      //   this.setState({
+      //     limitPopoverOpen: !this.state.limitPopoverOpen
+      //   })
+      // }, 3000)
     }
   }
 
@@ -106,10 +115,10 @@ export class Open extends React.Component<OpenProps, any> {
             data-tip
             data-for="details"
             className="col-md-2"
-            onClick={this.toggleLimitPopOver}
+            onClick={this.toggleDetailsPopOver}
           >
             <ReactCountdownClock
-              seconds={900}
+              seconds={this.state.secondsBetweenDates}
               color="#0ac18e"
               alpha={0.9}
               size={50}
@@ -152,7 +161,7 @@ export class Open extends React.Component<OpenProps, any> {
               <div className="col-md-12">
                 <p id="" className="">
                   Please send your payment within
-                  <span className="red"> 3:45</span>
+                  <span className="red"> {this.state.secondsBetweenDates}</span>
                 </p>
               </div>
               <div className="col-md-12">

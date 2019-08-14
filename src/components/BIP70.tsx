@@ -73,6 +73,8 @@ export class BIP70 extends React.Component<BIP70Props, any> {
           paymentId={this.state.paymentId}
           toggleStatus={this.toggleStatus}
           symbol={this.state.symbol}
+          time={this.state.time}
+          expires={this.state.expires}
         />
         {badgerButton}
         <PoweredBy />
