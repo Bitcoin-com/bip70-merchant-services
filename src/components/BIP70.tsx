@@ -5,8 +5,8 @@ import { Card } from "./Card"
 import { Info } from "./Info"
 import axios from "axios"
 
-// import txSampleData from "./bchTxSampleData"
-import txSampleData from "./slpTxSampleData"
+import txSampleData from "./bchTxSampleData"
+// import txSampleData from "./slpTxSampleData"
 
 export interface BIP70Props {
   compiler: string
@@ -29,11 +29,14 @@ export class BIP70 extends React.Component<BIP70Props, any> {
       this.state.outputs.forEach((output: any) => {
         totalAmount += output.amount
       })
+      totalAmount  = totalAmount / 100000000
     } else if (this.state.currency === "SLP") {
-      totalAmount = this.state.outputs[0].send_amounts
       const response = await axios.get(
         `https://rest.bitcoin.com/v2/slp/list/${this.state.outputs[0].token_id}`
       )
+      totalAmount = this.state.outputs[0].send_amounts.reduce(
+        (a: number, b: number) => a + (b / (10 ** response.data.decimals))
+      , 0)
       this.setState({
         symbol: response.data.symbol
       })
