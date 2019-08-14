@@ -19,10 +19,12 @@ export class Open extends React.Component<OpenProps, any> {
     super(props, context)
     this.toggleUrlPopOver = this.toggleUrlPopOver.bind(this)
     this.toggleDetailsPopOver = this.toggleDetailsPopOver.bind(this)
+    this.toggleLimitPopOver = this.toggleLimitPopOver.bind(this)
     this.toggleStatus = this.toggleStatus.bind(this)
     this.state = {
       urlPopoverOpen: false,
       detailsPopoverOpen: false,
+      limitPopoverOpen: false,
       BCHPrice: 0
     }
   }
@@ -62,6 +64,19 @@ export class Open extends React.Component<OpenProps, any> {
     }
   }
 
+  toggleLimitPopOver() {
+    if (this.state.limitPopoverOpen === false) {
+      this.setState({
+        limitPopoverOpen: !this.state.limitPopoverOpen
+      })
+      setTimeout(() => {
+        this.setState({
+          limitPopoverOpen: !this.state.limitPopoverOpen
+        })
+      }, 3000)
+    }
+  }
+
   toggleStatus() {
     this.props.toggleStatus()
   }
@@ -91,7 +106,7 @@ export class Open extends React.Component<OpenProps, any> {
             onClick={this.toggleDetailsPopOver}
           >
             <ReactCountdownClock
-              seconds={1}
+              seconds={900}
               color="#0ac18e"
               alpha={0.9}
               size={50}
@@ -192,6 +207,20 @@ export class Open extends React.Component<OpenProps, any> {
                 </div>
               </div>
             </div>
+          </PopoverBody>
+        </Popover>
+        <Popover
+          placement="top"
+          isOpen={this.state.limitPopoverOpen}
+          target="popOver"
+          toggle={this.toggleLimitPopOver}
+          className="limitPopOver"
+        >
+          <PopoverHeader>
+            <p>Foobar</p>
+          </PopoverHeader>
+          <PopoverBody>
+            <p>Foobar</p>
           </PopoverBody>
         </Popover>
       </div>
