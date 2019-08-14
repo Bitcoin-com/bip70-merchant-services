@@ -131,12 +131,13 @@ export class Open extends React.Component<OpenProps, any> {
             <div id="detailsHeader" className="row">
               <div className="col-md-12">
                 <p id="" className="">
-                  Please send your payment within 3:45
+                  Please send your payment within
+                  <span className="red"> 3:45</span>
                 </p>
               </div>
               <div className="col-md-12">
                 <p id="" className="">
-                  1 BCH = {this.state.BCHPrice}
+                  1 BCH = {this.state.BCHPrice} USD
                 </p>
               </div>
             </div>
@@ -144,24 +145,51 @@ export class Open extends React.Component<OpenProps, any> {
           <PopoverBody>
             <div id="detailsBody" className="row">
               <div className="col-md-12">
-                <p id="" className="">
-                  Subtotal 0.01 BCH
-                </p>
+                <div className="row">
+                  <div className="col-md-6">
+                    <p id="" className="text-left">
+                      Subtotal
+                    </p>
+                  </div>
+                  <div className="col-md-6">
+                    <p id="" className="text-right">
+                      0.01 BCH
+                    </p>
+                  </div>
+                </div>
               </div>
               <div className="col-md-12">
-                <p id="" className="">
-                  Network Cost 0.01 BCH
-                </p>
+                <div className="row">
+                  <div className="col-md-6">
+                    <p id="" className="text-left">
+                      Network Cost
+                    </p>
+                  </div>
+                  <div className="col-md-6">
+                    <p id="" className="text-right">
+                      0.01 BCH
+                    </p>
+                  </div>
+                </div>
               </div>
               <div className="col-md-12">
-                <p id="" className="">
-                  Total 0.01 BCH
-                </p>
+                <div className="row font-weight-bold">
+                  <div className="col-md-6">
+                    <p id="" className="text-left">
+                      Total Cost
+                    </p>
+                  </div>
+                  <div className="col-md-6">
+                    <p id="" className="text-right">
+                      0.01 BCH
+                    </p>
+                  </div>
+                </div>
               </div>
-              <div className="col-md-12">
-                <p id="" className="">
-                  Copy Payment URL
-                </p>
+              <div className="col-md-12 text-center brandGreen">
+                <div onClick={this.toggleUrlPopOver}>
+                  Copy Payment URL <i className="brandGreen far fa-copy" />
+                </div>
               </div>
             </div>
           </PopoverBody>
