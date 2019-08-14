@@ -11,7 +11,7 @@ export class Copied extends React.Component<CopiedProps, any> {
     this.state = {}
   }
 
-  render() {
+  render(): JSX.Element {
     return (
       <div id="copied" className="brandGreenBackground row">
         <div className="col-md-1" />

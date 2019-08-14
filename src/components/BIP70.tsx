@@ -7,6 +7,7 @@ import axios from "axios"
 
 // import txSampleData from "./bchTxSampleData"
 import txSampleData from "./slpTxSampleData"
+import { AxiosResponse } from "axios"
 
 export interface BIP70Props {
   compiler: string
@@ -21,10 +22,10 @@ export class BIP70 extends React.Component<BIP70Props, any> {
   }
 
   async componentDidMount() {
-    const invoice = await axios.get(
+    const invoice: AxiosResponse = await axios.get(
       "https://pay.bitcoin.com/s/EWe9kqdfnV2CnLNyxP9Fc9",
       {
-        headers: {"Accept": "application/json"}
+        headers: { Accept: "application/json" }
       }
     )
 
@@ -64,7 +65,7 @@ export class BIP70 extends React.Component<BIP70Props, any> {
     })
   }
 
-  render() {
+  render(): JSX.Element {
     let badgerButton
     if (this.state.status === "open") {
       badgerButton = <BadgerButton />

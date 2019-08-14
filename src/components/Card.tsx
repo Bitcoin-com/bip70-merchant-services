@@ -26,7 +26,7 @@ export class Card extends React.Component<CardProps, any> {
     this.props.toggleStatus()
   }
 
-  render() {
+  render(): JSX.Element {
     let open, expired, paid
     if (this.props.status === "open") {
       open = (
