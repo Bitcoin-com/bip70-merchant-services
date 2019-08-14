@@ -44,7 +44,7 @@ export class Open extends React.Component<OpenProps, any> {
       detailsPopoverOpen: false,
       limitPopoverOpen: false,
       BCHPrice: 0,
-      secondsBetweenDates: then.getTime(),
+      secondsBetweenDates: secondsBetweenDates,
       loading: true
     }
   }
