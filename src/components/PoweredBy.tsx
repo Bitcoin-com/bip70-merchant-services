@@ -10,7 +10,7 @@ export class PoweredBy extends React.Component<PoweredByProps, any> {
     this.state = {}
   }
 
-  render() {
+  render(): JSX.Element {
     return (
       <div id="poweredBy">
         <p>

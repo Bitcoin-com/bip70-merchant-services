@@ -9,7 +9,7 @@ export class NeedHelp extends React.Component<NeedHelpProps, any> {
     this.state = {}
   }
 
-  render() {
+  render(): JSX.Element {
     return (
       <p id="needHelp">
         <a

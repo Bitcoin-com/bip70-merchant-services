@@ -9,7 +9,7 @@ export class Paid extends React.Component<PaidProps, any> {
     this.state = {}
   }
 
-  render() {
+  render(): JSX.Element {
     return (
       <div id="paid">
         <p>

@@ -9,7 +9,7 @@ export class Details extends React.Component<DetailsProps, any> {
     this.state = {}
   }
 
-  render() {
+  render(): JSX.Element {
     return (
       <div id="details">
         <div id="detailsHeader">

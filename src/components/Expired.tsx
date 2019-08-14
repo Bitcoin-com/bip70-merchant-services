@@ -11,7 +11,7 @@ export class Expired extends React.Component<ExpiredProps, any> {
     this.state = {}
   }
 
-  render() {
+  render(): JSX.Element {
     return (
       <div id="expired">
         <p>
