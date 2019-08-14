@@ -6,6 +6,8 @@ import { Copied } from "./Copied"
 import { Popover, PopoverHeader, PopoverBody } from "reactstrap"
 import axios from "axios"
 import { CopyToClipboard } from "react-copy-to-clipboard"
+import Countdown from "react-countdown-now"
+import { AxiosResponse } from "axios"
 
 export interface OpenProps {
   amount: number
@@ -26,22 +28,22 @@ export class Open extends React.Component<OpenProps, any> {
     this.toggleLimitPopOver = this.toggleLimitPopOver.bind(this)
     this.toggleStatus = this.toggleStatus.bind(this)
     // calculate time
-    let then = new Date(this.props.expires)
-    let now = new Date()
-    let diff = then.getTime() - now.getTime()
-    let seconds = diff / 1000
+    let then: Date = new Date(this.props.expires)
+    let now: Date = new Date()
+    let diff: number = then.getTime() - now.getTime()
+    let seconds: number = diff / 1000
     let secondsBetweenDates = Math.abs(seconds)
     this.state = {
       urlPopoverOpen: false,
       detailsPopoverOpen: false,
       limitPopoverOpen: false,
       BCHPrice: 0,
-      secondsBetweenDates: secondsBetweenDates
+      secondsBetweenDates: then.getTime()
     }
   }
 
-  async componentDidMount() {
-    const response = await axios.get(
+  async componentDidMount(): Promise<any> {
+    const response: AxiosResponse = await axios.get(
       `https://index-api.bitcoin.com/api/v0/cash/price/usd`
     )
     this.setState({
@@ -92,7 +94,7 @@ export class Open extends React.Component<OpenProps, any> {
     this.props.toggleStatus()
   }
 
-  render() {
+  render(): JSX.Element {
     return (
       <div id="open">
         <div className="row" id="openHeader">
@@ -162,7 +164,10 @@ export class Open extends React.Component<OpenProps, any> {
               <div className="col-md-12">
                 <p id="" className="">
                   Please send your payment within
-                  <span className="red"> {this.state.secondsBetweenDates}</span>
+                  <span className="red">
+                    {Date.now()}= foo -{this.state.secondsBetweenDates}
+                    <Countdown date={this.state.secondsBetweenDates} />
+                  </span>
                 </p>
               </div>
               <div className="col-md-12">
