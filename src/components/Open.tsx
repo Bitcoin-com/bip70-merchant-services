@@ -5,6 +5,7 @@ import ReactCountdownClock from "react-countdown-clock"
 import { Copied } from "./Copied"
 import { Popover, PopoverHeader, PopoverBody } from "reactstrap"
 import axios from "axios"
+import { CopyToClipboard } from "react-copy-to-clipboard"
 
 export interface OpenProps {
   amount: number
@@ -85,14 +86,16 @@ export class Open extends React.Component<OpenProps, any> {
     return (
       <div id="open">
         <div className="row" id="openHeader">
-          <div
-            data-tip
-            data-for="copy"
-            className="col-md-2"
-            onClick={this.toggleUrlPopOver}
-          >
-            <i className="brandGreen far fa-copy" />
-          </div>
+          <CopyToClipboard text={this.props.paymentUrl}>
+            <div
+              data-tip
+              data-for="copy"
+              className="col-md-2"
+              onClick={this.toggleUrlPopOver}
+            >
+              <i className="brandGreen far fa-copy" />
+            </div>
+          </CopyToClipboard>
           <ReactTooltip id="copy" effect="solid" type="dark" place="top">
             <span>Copy Payment URL</span>
           </ReactTooltip>
@@ -103,7 +106,7 @@ export class Open extends React.Component<OpenProps, any> {
             data-tip
             data-for="details"
             className="col-md-2"
-            onClick={this.toggleDetailsPopOver}
+            onClick={this.toggleLimitPopOver}
           >
             <ReactCountdownClock
               seconds={900}
@@ -117,11 +120,13 @@ export class Open extends React.Component<OpenProps, any> {
             <span>View Payment Details</span>
           </ReactTooltip>
         </div>
-        <div className="row" id="qr" onClick={this.toggleUrlPopOver}>
-          <p className="col-md-12">
-            <img src={QR} alt="QR Code" />
-          </p>
-        </div>
+        <CopyToClipboard text={this.props.paymentUrl}>
+          <div className="row" id="qr" onClick={this.toggleUrlPopOver}>
+            <p className="col-md-12">
+              <img src={QR} alt="QR Code" />
+            </p>
+          </div>
+        </CopyToClipboard>
         <div id="popOver" ref={popOver => (this.popOverElement = popOver)} />
         <Popover
           placement="top"
@@ -217,10 +222,24 @@ export class Open extends React.Component<OpenProps, any> {
           className="limitPopOver"
         >
           <PopoverHeader>
-            <p>Foobar</p>
+            <div id="limitHeader" className="row">
+              <div className="col-md-12">
+                <p id="" className="">
+                  <i className="brandGreen fas fa-clock" />
+                  Awaiting Payment
+                </p>
+              </div>
+            </div>
           </PopoverHeader>
           <PopoverBody>
-            <p>Foobar</p>
+            <div id="detailsBody" className="row">
+              <div className="col-md-12">
+                <p id="" className="">
+                  This invoice will expire soon. Please send your payment within
+                  the remaining
+                </p>
+              </div>
+            </div>
           </PopoverBody>
         </Popover>
       </div>
