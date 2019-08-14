@@ -46,10 +46,10 @@ export class BIP70 extends React.Component<BIP70Props, any> {
       txSampleRequest
     )
 
-    // this.setState(invoice.data)
+    this.setState(invoice.data)
     this.setState({
-      // loading: false,
-      // qr: `https://pay.bitcoin.com/qr/${this.state.paymentId}`
+      loading: false,
+      qr: `https://pay.bitcoin.com/qr/${this.state.paymentId}`
     })
     let totalAmount: number = 0
     if (this.state.currency === "BCH") {
