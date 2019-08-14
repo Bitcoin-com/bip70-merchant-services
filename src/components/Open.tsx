@@ -3,8 +3,9 @@ import QR from "../qr.png"
 import ReactTooltip from "react-tooltip"
 import ReactCountdownClock from "react-countdown-clock"
 import { Copied } from "./Copied"
-
 import { Popover, PopoverHeader, PopoverBody } from "reactstrap"
+import axios from "axios"
+
 export interface OpenProps {
   amount: number
   paymentUrl: string
@@ -21,8 +22,18 @@ export class Open extends React.Component<OpenProps, any> {
     this.toggleStatus = this.toggleStatus.bind(this)
     this.state = {
       urlPopoverOpen: false,
-      detailsPopoverOpen: false
+      detailsPopoverOpen: false,
+      BCHPrice: 0
     }
+  }
+
+  async componentDidMount() {
+    const response = await axios.get(
+      `https://index-api.bitcoin.com/api/v0/cash/price/usd`
+    )
+    this.setState({
+      BCHPrice: response.data.price / 100
+    })
   }
 
   toggleUrlPopOver() {
@@ -43,11 +54,11 @@ export class Open extends React.Component<OpenProps, any> {
       this.setState({
         detailsPopoverOpen: !this.state.detailsPopoverOpen
       })
-      // setTimeout(() => {
-      //   this.setState({
-      //     detailsPopoverOpen: !this.state.detailsPopoverOpen
-      //   })
-      // }, 3000)
+      setTimeout(() => {
+        this.setState({
+          detailsPopoverOpen: !this.state.detailsPopoverOpen
+        })
+      }, 3000)
     }
   }
 
@@ -125,7 +136,7 @@ export class Open extends React.Component<OpenProps, any> {
               </div>
               <div className="col-md-12">
                 <p id="" className="">
-                  1 BCH = $345.67
+                  1 BCH = {this.state.BCHPrice}
                 </p>
               </div>
             </div>
