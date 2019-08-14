@@ -15,7 +15,7 @@ export interface OpenProps {
 }
 
 export class Open extends React.Component<OpenProps, any> {
-  popOverElement
+  popOverElement: HTMLDivElement
   constructor(props: OpenProps, context: any) {
     super(props, context)
     this.toggleUrlPopOver = this.toggleUrlPopOver.bind(this)
