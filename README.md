@@ -1,30 +1,49 @@
-# react-typescript-bootstrap-webpack-starter
-A basic starter for a project build with ReactJS, Typescript, Webpack 2 and Bootstrap
+# BIP70 Merchant Services
+
+Web GUI for pay.bitcoin.com
 
 ## Usage
 
 ### Getting started
+
 At first you have to install all node modules:
 
 ```bash
-npm install
+yarn install
 ```
 
 Afterwards you can start the app with:
 
 ```bash
-npm start
+yarn start
 ```
 
 Then will then have a server running at **[http://localhost:3000](http://localhost:3000)** with hot code replacement and live reloading in the browser.
 
+### Adding Components
+
+Create a new `Component.tsx` in `src/components/`
+
+### Adding Styles
+
+Create a new `Component.less` in `src/less/`
+
+Import less file in to `src/index.less`
+
+```less
+@import "less/Component";
+```
+
 ### Building a distribution
+
 If you want to build a distribution, you have to execute
 
 ```bash
 npm run build:dev
 ```
+
 or
+
 ```bash
 npm run build:prod
 ```
@@ -34,6 +53,7 @@ In the prod distribution all js- and css-files are uglified and there are no sou
 You will find the distribution under **/dist**.
 
 ### Testing
+
 You can run the tests with
 
 ```bash
@@ -48,25 +68,20 @@ npm run test:watch
 
 The following technologies are used for writing and running tests:
 
-* Test runner: [KarmaJS](https://karma-runner.github.io)
-* Headless WebKit browser: [PhantomJS](http://phantomjs.org)
-* Testing framework: [Jasmine](https://jasmine.github.io/)
+- Test runner: [KarmaJS](https://karma-runner.github.io)
+- Headless WebKit browser: [PhantomJS](http://phantomjs.org)
+- Testing framework: [Jasmine](https://jasmine.github.io/)
 
 ## External resources
 
-* A short book about React and Typescript: [Hello React and TypeScript](https://charleslbryant.gitbooks.io/hello-react-and-typescript/content/index.html)
+- [Bitcoin.com Developer Resources](https://developer.bitcoin.com)
+- [Bitcoin.com Developer Discord](http://geni.us/CashDev)
 
-## Creator
+## Credit
 
-**Stephan Zerhusen**
-
-* <https://twitter.com/stzerhus>
-* <https://github.com/szerhusenBC>
+- [Gabriel Cardona](https://twitter.com/cgcardona)
+- [Vin Armani](https://twitter.com/vinarmani)
 
 ## Copyright and license
 
 The code is released under the [MIT license](LICENSE?raw=true).
-
----------------------------------------
-
-Please feel free to send me some feedback or questions!
