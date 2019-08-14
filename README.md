@@ -31,7 +31,7 @@ Create a new `Component.less` in `src/less/`
 Import less file in to `src/index.less`
 
 ```less
-@import "less/PoweredBy";
+@import "less/Component";
 ```
 
 ### Building a distribution
