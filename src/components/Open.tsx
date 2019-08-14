@@ -1,5 +1,5 @@
 import * as React from "react"
-import QR from "../qr.png"
+// import QR from "../qr.png"
 import ReactTooltip from "react-tooltip"
 import ReactCountdownClock from "react-countdown-clock"
 import { Copied } from "./Copied"
@@ -12,6 +12,8 @@ export interface OpenProps {
   paymentUrl: string
   toggleStatus: Function
   symbol: string
+  qr: string
+  ttl: number
 }
 
 export class Open extends React.Component<OpenProps, any> {
@@ -109,7 +111,7 @@ export class Open extends React.Component<OpenProps, any> {
             onClick={this.toggleLimitPopOver}
           >
             <ReactCountdownClock
-              seconds={900}
+              seconds={this.props.ttl}
               color="#0ac18e"
               alpha={0.9}
               size={50}
@@ -123,7 +125,7 @@ export class Open extends React.Component<OpenProps, any> {
         <CopyToClipboard text={this.props.paymentUrl}>
           <div className="row" id="qr" onClick={this.toggleUrlPopOver}>
             <p className="col-md-12">
-              <img src={QR} alt="QR Code" />
+              <img src={this.props.qr} alt="QR Code" />
             </p>
           </div>
         </CopyToClipboard>
