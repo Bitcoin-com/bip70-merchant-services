@@ -6,6 +6,14 @@ import { Copied } from "./Copied"
 import { Popover, PopoverHeader, PopoverBody } from "reactstrap"
 import axios from "axios"
 import { CopyToClipboard } from "react-copy-to-clipboard"
+import Countdown from "react-countdown-now"
+import { AxiosResponse } from "axios"
+import { css } from "@emotion/core"
+import { CircleLoader } from "react-spinners"
+const override = css`
+  display: block;
+  margin: 0 auto;
+`
 
 export interface OpenProps {
   amount: number
@@ -26,26 +34,28 @@ export class Open extends React.Component<OpenProps, any> {
     this.toggleLimitPopOver = this.toggleLimitPopOver.bind(this)
     this.toggleStatus = this.toggleStatus.bind(this)
     // calculate time
-    let then = new Date(this.props.expires)
-    let now = new Date()
-    let diff = then.getTime() - now.getTime()
-    let seconds = diff / 1000
+    let then: Date = new Date(this.props.expires)
+    let now: Date = new Date()
+    let diff: number = then.getTime() - now.getTime()
+    let seconds: number = diff / 1000
     let secondsBetweenDates = Math.abs(seconds)
     this.state = {
       urlPopoverOpen: false,
       detailsPopoverOpen: false,
       limitPopoverOpen: false,
       BCHPrice: 0,
-      secondsBetweenDates: secondsBetweenDates
+      secondsBetweenDates: then.getTime(),
+      loading: true
     }
   }
 
-  async componentDidMount() {
-    const response = await axios.get(
+  async componentDidMount(): Promise<any> {
+    const response: AxiosResponse = await axios.get(
       `https://index-api.bitcoin.com/api/v0/cash/price/usd`
     )
     this.setState({
-      BCHPrice: response.data.price / 100
+      BCHPrice: response.data.price / 100,
+      loading: false
     })
   }
 
@@ -67,11 +77,11 @@ export class Open extends React.Component<OpenProps, any> {
       this.setState({
         detailsPopoverOpen: !this.state.detailsPopoverOpen
       })
-      // setTimeout(() => {
-      //   this.setState({
-      //     detailsPopoverOpen: !this.state.detailsPopoverOpen
-      //   })
-      // }, 3000)
+      setTimeout(() => {
+        this.setState({
+          detailsPopoverOpen: !this.state.detailsPopoverOpen
+        })
+      }, 3000)
     }
   }
 
@@ -80,11 +90,11 @@ export class Open extends React.Component<OpenProps, any> {
       this.setState({
         limitPopoverOpen: !this.state.limitPopoverOpen
       })
-      // setTimeout(() => {
-      //   this.setState({
-      //     limitPopoverOpen: !this.state.limitPopoverOpen
-      //   })
-      // }, 3000)
+      setTimeout(() => {
+        this.setState({
+          limitPopoverOpen: !this.state.limitPopoverOpen
+        })
+      }, 3000)
     }
   }
 
@@ -92,9 +102,16 @@ export class Open extends React.Component<OpenProps, any> {
     this.props.toggleStatus()
   }
 
-  render() {
+  render(): JSX.Element {
     return (
       <div id="open">
+        <CircleLoader
+          css={override}
+          sizeUnit={"px"}
+          size={150}
+          color="#0ac18e"
+          loading={this.state.loading}
+        />
         <div className="row" id="openHeader">
           <CopyToClipboard text={this.props.paymentUrl}>
             <div
@@ -162,7 +179,10 @@ export class Open extends React.Component<OpenProps, any> {
               <div className="col-md-12">
                 <p id="" className="">
                   Please send your payment within
-                  <span className="red"> {this.state.secondsBetweenDates}</span>
+                  <span className="red">
+                    {Date.now()}= foo -{this.state.secondsBetweenDates}
+                    <Countdown date={this.state.secondsBetweenDates} />
+                  </span>
                 </p>
               </div>
               <div className="col-md-12">
