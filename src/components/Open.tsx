@@ -1,8 +1,8 @@
 import * as React from "react"
 import ReactTooltip from "react-tooltip"
-import ReactCountdownClock from "react-countdown-clock"
 import { Copied } from "./Copied"
 import { Details } from "./Details"
+import { Limit } from "./Limit"
 import { Popover, PopoverHeader, PopoverBody } from "reactstrap"
 import axios from "axios"
 import { CopyToClipboard } from "react-copy-to-clipboard"
@@ -87,16 +87,9 @@ export class Open extends React.Component<OpenProps, any> {
   }
 
   toggleLimitPopOver() {
-    if (this.state.limitPopoverOpen === false) {
-      this.setState({
-        limitPopoverOpen: !this.state.limitPopoverOpen
-      })
-      setTimeout(() => {
-        this.setState({
-          limitPopoverOpen: !this.state.limitPopoverOpen
-        })
-      }, 3000)
-    }
+    this.setState({
+      limitPopoverOpen: !this.state.limitPopoverOpen
+    })
   }
 
   toggleStatus(): void {
@@ -193,34 +186,14 @@ export class Open extends React.Component<OpenProps, any> {
         />
 
         {/* Limit Popover */}
-        <Popover
-          placement="top"
-          isOpen={this.state.limitPopoverOpen}
-          target="popOver"
-          toggle={this.toggleLimitPopOver}
-          className="limitPopOver"
-        >
-          <PopoverHeader>
-            <div id="limitHeader" className="row">
-              <div className="col-md-12">
-                <p id="" className="">
-                  <i className="brandGreen fas fa-clock" />
-                  Awaiting Payment
-                </p>
-              </div>
-            </div>
-          </PopoverHeader>
-          <PopoverBody>
-            <div id="detailsBody" className="row">
-              <div className="col-md-12">
-                <p id="" className="">
-                  This invoice will expire soon. Please send your payment within{" "}
-                  <Countdown zeroPadTime={0} date={this.state.then} />{" "}
-                </p>
-              </div>
-            </div>
-          </PopoverBody>
-        </Popover>
+        <Limit
+          amount={this.props.amount}
+          symbol={this.props.symbol}
+          paymentUrl={this.props.paymentUrl}
+          toggleLimitPopOver={this.toggleLimitPopOver}
+          limitPopoverOpen={this.state.limitPopoverOpen}
+          then={this.state.then}
+        />
       </div>
     )
   }
