@@ -5,7 +5,6 @@ export interface CopiedProps {
 }
 
 export class Copied extends React.Component<CopiedProps, any> {
-  // this constructor is necessary to make the props work
   constructor(props: CopiedProps, context: any) {
     super(props, context)
     this.state = {}

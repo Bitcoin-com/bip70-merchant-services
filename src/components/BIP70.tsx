@@ -14,11 +14,11 @@ const override = css`
 `
 
 // Sample requests
-import txSampleRequest from "./bchTxSampleRequest"
-// import txSampleRequest from "./slpTxSampleRequest"
+// import txSampleRequest from "./bchTxSampleRequest"
+import txSampleRequest from "./slpTxSampleRequest"
 
 // Sample Responses
-import txSampleResponse from "./bchTxSampleResponse"
+// import txSampleResponse from "./bchTxSampleResponse"
 // import txSampleResponse from "./slpTxSampleResponse"
 
 export interface BIP70Props {

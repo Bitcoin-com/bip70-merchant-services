@@ -4,7 +4,6 @@ import Logo from "../logo.png"
 export interface PoweredByProps {}
 
 export class PoweredBy extends React.Component<PoweredByProps, any> {
-  // this constructor is necessary to make the props work
   constructor(props: PoweredByProps, context: any) {
     super(props, context)
     this.state = {}

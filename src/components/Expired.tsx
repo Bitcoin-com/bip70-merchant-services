@@ -5,7 +5,6 @@ export interface ExpiredProps {
 }
 
 export class Expired extends React.Component<ExpiredProps, any> {
-  // this constructor is necessary to make the props work
   constructor(props: ExpiredProps, context: any) {
     super(props, context)
     this.state = {}

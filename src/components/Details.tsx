@@ -1,9 +1,9 @@
 import * as React from "react"
 
+// THIS COMPONENT ISN"T CURRENTLY USED
 export interface DetailsProps {}
 
 export class Details extends React.Component<DetailsProps, any> {
-  // this constructor is necessary to make the props work
   constructor(props: DetailsProps, context: any) {
     super(props, context)
     this.state = {}

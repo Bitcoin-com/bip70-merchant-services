@@ -1,5 +1,4 @@
 import * as React from "react"
-// import QR from "../qr.png"
 import ReactTooltip from "react-tooltip"
 import ReactCountdownClock from "react-countdown-clock"
 import { Copied } from "./Copied"
@@ -38,7 +37,7 @@ export class Open extends React.Component<OpenProps, any> {
     let now: Date = new Date()
     let diff: number = then.getTime() - now.getTime()
     let seconds: number = diff / 1000
-    let secondsBetweenDates = Math.abs(seconds)
+    // let secondsBetweenDates = Math.abs(seconds)
     this.state = {
       urlPopoverOpen: false,
       detailsPopoverOpen: false,
@@ -204,7 +203,7 @@ export class Open extends React.Component<OpenProps, any> {
                   </div>
                   <div className="col-md-6">
                     <p id="" className="text-right">
-                      0.01 BCH
+                      {this.props.amount} {this.props.symbol}
                     </p>
                   </div>
                 </div>
@@ -218,7 +217,7 @@ export class Open extends React.Component<OpenProps, any> {
                   </div>
                   <div className="col-md-6">
                     <p id="" className="text-right">
-                      0.01 BCH
+                      {this.props.amount} {this.props.symbol}
                     </p>
                   </div>
                 </div>
@@ -232,7 +231,7 @@ export class Open extends React.Component<OpenProps, any> {
                   </div>
                   <div className="col-md-6">
                     <p id="" className="text-right">
-                      0.01 BCH
+                      {this.props.amount} {this.props.symbol}
                     </p>
                   </div>
                 </div>

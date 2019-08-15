@@ -7,7 +7,6 @@ export interface NeedHelpProps {
 }
 
 export class NeedHelp extends React.Component<NeedHelpProps, any> {
-  // this constructor is necessary to make the props work
   constructor(props: NeedHelpProps, context: any) {
     super(props, context)
     this.state = {}
