@@ -137,19 +137,16 @@ export class Open extends React.Component<OpenProps, any> {
           <div className="col-md-8">
             {this.props.amount} {this.props.symbol}
           </div>
+
+          {/* Toggle Details Popover */}
           <div
             data-tip
             data-for="details"
             className="col-md-2"
+            id="detailsCountdown"
             onClick={this.toggleDetailsPopOver}
           >
-            <ReactCountdownClock
-              seconds={this.state.secondsBetweenDates}
-              color="#0ac18e"
-              alpha={0.9}
-              size={50}
-              onComplete={this.toggleStatus}
-            />
+            <Countdown zeroPadTime={0} date={this.state.then} />{" "}
           </div>
 
           {/* Tooltip */}
