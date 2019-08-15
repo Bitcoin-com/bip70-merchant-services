@@ -189,6 +189,7 @@ export class Open extends React.Component<OpenProps, any> {
           toggleDetailsPopOver={this.toggleDetailsPopOver}
           detailsPopoverOpen={this.state.detailsPopoverOpen}
           then={this.state.then}
+          BCHPrice={this.state.BCHPrice}
         />
 
         {/* Limit Popover */}

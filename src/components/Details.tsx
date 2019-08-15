@@ -12,6 +12,7 @@ export interface DetailsProps {
   toggleDetailsPopOver: Function
   detailsPopoverOpen: boolean
   then: number
+  BCHPrice: number
 }
 
 export class Details extends React.Component<DetailsProps, any> {
@@ -48,7 +49,7 @@ export class Details extends React.Component<DetailsProps, any> {
               </div>
               <div className="col-md-12">
                 <p id="" className="">
-                  1 BCH = {this.state.BCHPrice} USD
+                  1 BCH = {this.props.BCHPrice} USD
                 </p>
               </div>
             </div>
