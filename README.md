@@ -34,6 +34,18 @@ Import less file in to `src/index.less`
 @import "less/Component";
 ```
 
+### Sample data
+
+#### Sample Request
+
+- `src/components/bchTxSampleRequest.ts`
+- `src/components/slpTxSampleRequest.ts`
+
+#### Sample Response
+
+- `src/components/bchTxSampleResponse.ts`
+- `src/components/slpTxSampleResponse.ts`
+
 ### Building a distribution
 
 If you want to build a distribution, you have to execute

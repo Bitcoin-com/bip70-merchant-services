@@ -14,8 +14,8 @@ export class NeedHelp extends React.Component<NeedHelpProps, any> {
       <p id="needHelp">
         <a
           className="brandGreen"
-          href="https://developer.bitcoin.com"
           target="_blank"
+          href="mailto:support@bitcoin.com"
         >
           Need Help?
         </a>

@@ -1,4 +1,4 @@
-let bchTxSampleData: {
+let bchTxSampleResponse: {
   network: string
   currency: string
   outputs: {
@@ -35,7 +35,7 @@ let bchTxSampleData: {
   ],
   time: "2019-08-13T19:08:24.672Z",
   expires: "2019-08-13T19:23:24.672Z",
-  status: "open",
+  status: "expired",
   merchantId: "00000000-0000-0000-0000-000000000000",
   memo: "Payment request for invoice Ejw1vDyG4VELGKa3LMYnJa",
   fiatSymbol: "BCH",
@@ -44,4 +44,4 @@ let bchTxSampleData: {
   paymentId: "Ejw1vDyG4VELGKa3LMYnJa"
 }
 
-export default bchTxSampleData
+export default bchTxSampleResponse

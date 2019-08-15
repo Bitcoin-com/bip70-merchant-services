@@ -249,13 +249,15 @@ export class Open extends React.Component<OpenProps, any> {
                     address, required amount and securely.
                   </span>
                 </ReactTooltip>
-                <div
-                  data-tip
-                  data-for="secondCopy"
-                  onClick={this.toggleUrlPopOver}
-                >
-                  Copy Payment URL <i className="brandGreen far fa-copy" />
-                </div>
+                <CopyToClipboard text={this.props.paymentUrl}>
+                  <div
+                    data-tip
+                    data-for="secondCopy"
+                    onClick={this.toggleUrlPopOver}
+                  >
+                    Copy Payment URL <i className="brandGreen far fa-copy" />
+                  </div>
+                </CopyToClipboard>
               </div>
             </div>
           </PopoverBody>
@@ -281,7 +283,8 @@ export class Open extends React.Component<OpenProps, any> {
             <div id="detailsBody" className="row">
               <div className="col-md-12">
                 <p id="" className="">
-                  This invoice will expire soon. Please send your payment within <Countdown zeroPadTime={0} date={this.state.then} />{" "}
+                  This invoice will expire soon. Please send your payment within{" "}
+                  <Countdown zeroPadTime={0} date={this.state.then} />{" "}
                 </p>
               </div>
             </div>

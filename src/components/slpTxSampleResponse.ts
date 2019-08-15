@@ -1,4 +1,4 @@
-let slpTxSampleData: {
+let slpTxSampleResponse: {
   network: string
   currency: string
   outputs: {
@@ -40,7 +40,7 @@ let slpTxSampleData: {
   ],
   time: "2019-08-13T19:23:57.272Z",
   expires: "2019-08-13T19:38:57.272Z",
-  status: "open",
+  status: "expired",
   merchantId: "00000000-0000-0000-0000-000000000000",
   memo: "Payment request for invoice D1amXHzcqBoK9VPYXLV9FF",
   fiatSymbol: "BCH",
@@ -49,4 +49,4 @@ let slpTxSampleData: {
   paymentId: "D1amXHzcqBoK9VPYXLV9FF"
 }
 
-export default slpTxSampleData
+export default slpTxSampleResponse
