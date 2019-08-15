@@ -2,6 +2,7 @@ import * as React from "react"
 import ReactTooltip from "react-tooltip"
 import ReactCountdownClock from "react-countdown-clock"
 import { Copied } from "./Copied"
+import { Details } from "./Details"
 import { Popover, PopoverHeader, PopoverBody } from "reactstrap"
 import axios from "axios"
 import { CopyToClipboard } from "react-copy-to-clipboard"
@@ -105,6 +106,7 @@ export class Open extends React.Component<OpenProps, any> {
   render(): JSX.Element {
     return (
       <div id="open">
+        {/* Loader */}
         <CircleLoader
           css={override}
           sizeUnit={"px"}
@@ -112,7 +114,9 @@ export class Open extends React.Component<OpenProps, any> {
           color="#0ac18e"
           loading={this.state.loading}
         />
+
         <div className="row" id="openHeader">
+          {/* Copy to Clipboard */}
           <CopyToClipboard text={this.props.paymentUrl}>
             <div
               data-tip
@@ -123,9 +127,13 @@ export class Open extends React.Component<OpenProps, any> {
               <i className="brandGreen far fa-copy" />
             </div>
           </CopyToClipboard>
+
+          {/* Tooltip */}
           <ReactTooltip id="copy" effect="solid" type="dark" place="top">
             <span>Copy Payment URL</span>
           </ReactTooltip>
+
+          {/* Amount and Symbol */}
           <div className="col-md-8">
             {this.props.amount} {this.props.symbol}
           </div>
@@ -143,10 +151,15 @@ export class Open extends React.Component<OpenProps, any> {
               onComplete={this.toggleStatus}
             />
           </div>
+
+          {/* Tooltip */}
           <ReactTooltip id="details" effect="solid" type="dark" place="top">
             <span>View Payment Details</span>
           </ReactTooltip>
         </div>
+
+        {/* QR Code */}
+        {/* Copy to Clipboard */}
         <CopyToClipboard text={this.props.paymentUrl}>
           <div className="row" id="qr" onClick={this.toggleUrlPopOver}>
             <p className="col-md-12">
@@ -154,6 +167,8 @@ export class Open extends React.Component<OpenProps, any> {
             </p>
           </div>
         </CopyToClipboard>
+
+        {/* Popover */}
         <div id="popOver" ref={popOver => (this.popOverElement = popOver)} />
         <Popover
           placement="top"
@@ -167,100 +182,19 @@ export class Open extends React.Component<OpenProps, any> {
             <Copied paymentUrl={this.props.paymentUrl} />
           </PopoverBody>
         </Popover>
-        <Popover
-          placement="top"
-          isOpen={this.state.detailsPopoverOpen}
-          target="popOver"
-          toggle={this.toggleDetailsPopOver}
-          className="detailsPopOver"
-        >
-          <PopoverHeader>
-            <div id="detailsHeader" className="row">
-              <div className="col-md-12">
-                <p id="" className="">
-                  Please send your payment within{" "}
-                  <span className="red">
-                    {" "}
-                    <Countdown zeroPadTime={0} date={this.state.then} />{" "}
-                  </span>
-                </p>
-              </div>
-              <div className="col-md-12">
-                <p id="" className="">
-                  1 BCH = {this.state.BCHPrice} USD
-                </p>
-              </div>
-            </div>
-          </PopoverHeader>
-          <PopoverBody>
-            <div id="detailsBody" className="row">
-              <div className="col-md-12">
-                <div className="row">
-                  <div className="col-md-6">
-                    <p id="" className="text-left">
-                      Subtotal
-                    </p>
-                  </div>
-                  <div className="col-md-6">
-                    <p id="" className="text-right">
-                      {this.props.amount} {this.props.symbol}
-                    </p>
-                  </div>
-                </div>
-              </div>
-              <div className="col-md-12">
-                <div className="row">
-                  <div className="col-md-6">
-                    <p id="" className="text-left">
-                      Network Cost
-                    </p>
-                  </div>
-                  <div className="col-md-6">
-                    <p id="" className="text-right">
-                      {this.props.amount} {this.props.symbol}
-                    </p>
-                  </div>
-                </div>
-              </div>
-              <div className="col-md-12">
-                <div className="row font-weight-bold">
-                  <div className="col-md-6">
-                    <p id="" className="text-left">
-                      Total Cost
-                    </p>
-                  </div>
-                  <div className="col-md-6">
-                    <p id="" className="text-right">
-                      {this.props.amount} {this.props.symbol}
-                    </p>
-                  </div>
-                </div>
-              </div>
-              <div className="col-md-12 text-center brandGreen">
-                <ReactTooltip
-                  id="secondCopy"
-                  effect="solid"
-                  type="dark"
-                  place="top"
-                >
-                  <span>
-                    This is a link that allows your wallet to receive the BCH
-                    address, required amount and securely.
-                  </span>
-                </ReactTooltip>
-                <CopyToClipboard text={this.props.paymentUrl}>
-                  <div
-                    data-tip
-                    data-for="secondCopy"
-                    onClick={this.toggleUrlPopOver}
-                  >
-                    Copy Payment URL <i className="brandGreen far fa-copy" />
-                  </div>
-                </CopyToClipboard>
-              </div>
-            </div>
-          </PopoverBody>
-        </Popover>
+
+        {/* Details Popover */}
+        <Details
+          amount={this.props.amount}
+          symbol={this.props.symbol}
+          paymentUrl={this.props.paymentUrl}
+          toggleUrlPopOver={this.toggleUrlPopOver}
+          toggleDetailsPopOver={this.toggleDetailsPopOver}
+          detailsPopoverOpen={this.state.detailsPopoverOpen}
+          then={this.state.then}
+        />
+
+        {/* Limit Popover */}
         <Popover
           placement="top"
           isOpen={this.state.limitPopoverOpen}
