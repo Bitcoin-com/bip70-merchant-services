@@ -43,13 +43,6 @@ export class BIP70 extends React.Component<BIP70Props, any> {
     //   { headers: { Accept: "application/json" } }
     // )
 
-    // Merchant data endpoint
-    // let paymentId: string = "EWe9kqdfnV2CnLNyxP9Fc9"
-    // const merchantData: AxiosResponse = await axios.get(
-    //   `https://pay.bitcoin.com/m/${paymentId}`,
-    //   { headers: { Accept: "application/json" } }
-    // )
-
     // POST to create new invoice
     const invoice: AxiosResponse = await axios.post(
       `https://pay.bitcoin.com/create_invoice`,
@@ -66,6 +59,14 @@ export class BIP70 extends React.Component<BIP70Props, any> {
       loading: false,
       qr: `https://pay.bitcoin.com/qr/${this.state.paymentId}`
     })
+
+    // Merchant data endpoint
+    const merchantData: AxiosResponse = await axios.get(
+      `https://pay.bitcoin.com/m/${this.state.paymentId}`,
+      { headers: { Accept: "application/json" } }
+    )
+
+    this.setState(merchantData.data)
     let totalAmount: number = 0
     if (this.state.currency === "BCH") {
       this.setState({
@@ -117,6 +118,9 @@ export class BIP70 extends React.Component<BIP70Props, any> {
           status={this.state.status}
           memo={this.state.memo}
           merchantId={this.state.merchantId}
+          email={this.state.email}
+          merchant={this.state.name}
+          paymentId={this.state.paymentId}
         />
         <RingLoader
           css={override}

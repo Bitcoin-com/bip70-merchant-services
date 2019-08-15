@@ -5,6 +5,9 @@ export interface InfoProps {
   status: string
   memo: string
   merchantId: string
+  email: string
+  merchant: string
+  paymentId: string
 }
 
 export class Info extends React.Component<InfoProps, any> {
@@ -17,7 +20,13 @@ export class Info extends React.Component<InfoProps, any> {
   render(): JSX.Element {
     let needHelp
     if (this.props.status === "open") {
-      needHelp = <NeedHelp />
+      needHelp = (
+        <NeedHelp
+          email={this.props.email}
+          merchant={this.props.merchant}
+          paymentId={this.props.paymentId}
+        />
+      )
     }
     return (
       <div className="info">

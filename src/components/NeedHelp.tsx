@@ -1,6 +1,10 @@
 import * as React from "react"
 
-export interface NeedHelpProps {}
+export interface NeedHelpProps {
+  email: string
+  merchant: string
+  paymentId: string
+}
 
 export class NeedHelp extends React.Component<NeedHelpProps, any> {
   // this constructor is necessary to make the props work
@@ -14,8 +18,11 @@ export class NeedHelp extends React.Component<NeedHelpProps, any> {
       <p id="needHelp">
         <a
           className="brandGreen"
-          target="_blank"
-          href="mailto:support@bitcoin.com"
+          href={`mailto:${
+            this.props.email
+          }?subject=pay.bitcoin.com Support. Merchant: ${
+            this.props.merchant
+          } Payment Id: ${this.props.paymentId}`}
         >
           Need Help?
         </a>
