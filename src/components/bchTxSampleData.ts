@@ -1,4 +1,22 @@
-export default {
+let bchTxSampleData: {
+  network: string
+  currency: string
+  outputs: {
+    script: string
+    amount: number
+    address: string
+    type: string
+  }[]
+  time: string
+  expires: string
+  status: string
+  merchantId: string
+  memo: string
+  fiatSymbol: string
+  fiatRate: number
+  paymentUrl: string
+  paymentId: string
+} = {
   network: "main",
   currency: "BCH",
   outputs: [
@@ -25,3 +43,5 @@ export default {
   paymentUrl: "https://pay.bitcoin.com/i/Ejw1vDyG4VELGKa3LMYnJa",
   paymentId: "Ejw1vDyG4VELGKa3LMYnJa"
 }
+
+export default bchTxSampleData

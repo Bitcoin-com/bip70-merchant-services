@@ -1,4 +1,6 @@
-export default {
+let bchTxSampleRequest: {
+  outputs: { script?: string; amount: number; address?: string }[]
+} = {
   outputs: [
     {
       script: "76a914018a532856c45d74f7d67112547596a03819077188ac",
@@ -7,3 +9,5 @@ export default {
     { address: "19UniZ1obAjU1tgUydYLzhyvaMignd1oNE", amount: 10500 }
   ]
 }
+
+export default bchTxSampleRequest

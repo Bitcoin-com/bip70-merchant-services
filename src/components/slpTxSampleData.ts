@@ -1,4 +1,24 @@
-export default {
+let slpTxSampleData: {
+  network: string
+  currency: string
+  outputs: {
+    script: string
+    amount: number
+    token_id?: string
+    send_amounts?: number[]
+    address?: string
+    type: string
+  }[]
+  time: string
+  expires: string
+  status: string
+  merchantId: string
+  memo: string
+  fiatSymbol: string
+  fiatRate: number
+  paymentUrl: string
+  paymentId: string
+} = {
   network: "main",
   currency: "SLP",
   outputs: [
@@ -28,3 +48,5 @@ export default {
   paymentUrl: "https://pay.bitcoin.com/i/D1amXHzcqBoK9VPYXLV9FF",
   paymentId: "D1amXHzcqBoK9VPYXLV9FF"
 }
+
+export default slpTxSampleData

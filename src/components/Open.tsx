@@ -45,7 +45,8 @@ export class Open extends React.Component<OpenProps, any> {
       limitPopoverOpen: false,
       BCHPrice: 0,
       secondsBetweenDates: then.getTime(),
-      loading: true
+      loading: true,
+      then: then.getTime()
     }
   }
 
@@ -98,7 +99,7 @@ export class Open extends React.Component<OpenProps, any> {
     }
   }
 
-  toggleStatus() {
+  toggleStatus(): void {
     this.props.toggleStatus()
   }
 
@@ -178,10 +179,10 @@ export class Open extends React.Component<OpenProps, any> {
             <div id="detailsHeader" className="row">
               <div className="col-md-12">
                 <p id="" className="">
-                  Please send your payment within
+                  Please send your payment within{" "}
                   <span className="red">
-                    {Date.now()}= foo -{this.state.secondsBetweenDates}
-                    <Countdown date={this.state.secondsBetweenDates} />
+                    {" "}
+                    <Countdown zeroPadTime={0} date={this.state.then} />{" "}
                   </span>
                 </p>
               </div>
@@ -237,7 +238,22 @@ export class Open extends React.Component<OpenProps, any> {
                 </div>
               </div>
               <div className="col-md-12 text-center brandGreen">
-                <div onClick={this.toggleUrlPopOver}>
+                <ReactTooltip
+                  id="secondCopy"
+                  effect="solid"
+                  type="dark"
+                  place="top"
+                >
+                  <span>
+                    This is a link that allows your wallet to receive the BCH
+                    address, required amount and securely.
+                  </span>
+                </ReactTooltip>
+                <div
+                  data-tip
+                  data-for="secondCopy"
+                  onClick={this.toggleUrlPopOver}
+                >
                   Copy Payment URL <i className="brandGreen far fa-copy" />
                 </div>
               </div>
@@ -265,8 +281,7 @@ export class Open extends React.Component<OpenProps, any> {
             <div id="detailsBody" className="row">
               <div className="col-md-12">
                 <p id="" className="">
-                  This invoice will expire soon. Please send your payment within
-                  the remaining
+                  This invoice will expire soon. Please send your payment within <Countdown zeroPadTime={0} date={this.state.then} />{" "}
                 </p>
               </div>
             </div>
