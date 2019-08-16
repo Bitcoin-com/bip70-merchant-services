@@ -38,7 +38,9 @@ export class BIP70 extends React.Component<BIP70Props, any> {
 
   async componentDidMount(): Promise<any> {
     // GET existing invoice using websocket
-    let paymentId: string = "EW4CNuFCmYrPa7PjvwPcv8"
+    const query = new URLSearchParams(location.search)
+    const paymentId: string = query.get("paymentId")
+    // let paymentId: string = "EW4CNuFCmYrPa7PjvwPcv8"
 
     const client = new w3cwebsocket (`wss://pay.bitcoin.com/s/${paymentId}`, "echo-protocol");
 
