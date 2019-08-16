@@ -22,7 +22,7 @@ export class Card extends React.Component<CardProps, any> {
     this.state = {}
   }
 
-  toggleStatus() {
+  toggleStatus(): void {
     this.props.toggleStatus()
   }
 

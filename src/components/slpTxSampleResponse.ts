@@ -1,4 +1,24 @@
-export default {
+let slpTxSampleResponse: {
+  network: string
+  currency: string
+  outputs: {
+    script: string
+    amount: number
+    token_id?: string
+    send_amounts?: number[]
+    address?: string
+    type: string
+  }[]
+  time: string
+  expires: string
+  status: string
+  merchantId: string
+  memo: string
+  fiatSymbol: string
+  fiatRate: number
+  paymentUrl: string
+  paymentId: string
+} = {
   network: "main",
   currency: "SLP",
   outputs: [
@@ -20,7 +40,7 @@ export default {
   ],
   time: "2019-08-13T19:23:57.272Z",
   expires: "2019-08-13T19:38:57.272Z",
-  status: "open",
+  status: "expired",
   merchantId: "00000000-0000-0000-0000-000000000000",
   memo: "Payment request for invoice D1amXHzcqBoK9VPYXLV9FF",
   fiatSymbol: "BCH",
@@ -28,3 +48,5 @@ export default {
   paymentUrl: "https://pay.bitcoin.com/i/D1amXHzcqBoK9VPYXLV9FF",
   paymentId: "D1amXHzcqBoK9VPYXLV9FF"
 }
+
+export default slpTxSampleResponse

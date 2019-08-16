@@ -13,11 +13,13 @@ const override = css`
   margin: 0 auto;
 `
 
-// import txSampleData from "./bchTxSampleData"
-import txSampleData from "./slpTxSampleData"
-// import txSampleData from "./bchTxSampleData"
-// import txSampleRequest from "./slpTxSampleRequest"
-import txSampleRequest from "./bchTxSampleRequest"
+// Sample requests
+// import txSampleRequest from "./bchTxSampleRequest"
+import txSampleRequest from "./slpTxSampleRequest"
+
+// Sample Responses
+// import txSampleResponse from "./bchTxSampleResponse"
+// import txSampleResponse from "./slpTxSampleResponse"
 
 export interface BIP70Props {
   compiler: string
@@ -35,8 +37,9 @@ export class BIP70 extends React.Component<BIP70Props, any> {
 
   async componentDidMount(): Promise<any> {
     // GET existing invoice
+    // let paymentId: string = "EWe9kqdfnV2CnLNyxP9Fc9"
     // const invoice: AxiosResponse = await axios.get(
-    //   "https://pay.bitcoin.com/s/EWe9kqdfnV2CnLNyxP9Fc9",
+    //   `https://pay.bitcoin.com/s/${paymentId}`,
     //   { headers: { Accept: "application/json" } }
     // )
 
@@ -46,11 +49,24 @@ export class BIP70 extends React.Component<BIP70Props, any> {
       txSampleRequest
     )
 
+    // Uncomment for Sample Response
+    // this.setState(txSampleResponse)
+
+    // Uncomment for actual Response
     this.setState(invoice.data)
+
     this.setState({
       loading: false,
       qr: `https://pay.bitcoin.com/qr/${this.state.paymentId}`
     })
+
+    // Merchant data endpoint
+    const merchantData: AxiosResponse = await axios.get(
+      `https://pay.bitcoin.com/m/${this.state.paymentId}`,
+      { headers: { Accept: "application/json" } }
+    )
+
+    this.setState(merchantData.data)
     let totalAmount: number = 0
     if (this.state.currency === "BCH") {
       this.setState({
@@ -102,6 +118,9 @@ export class BIP70 extends React.Component<BIP70Props, any> {
           status={this.state.status}
           memo={this.state.memo}
           merchantId={this.state.merchantId}
+          email={this.state.email}
+          merchant={this.state.name}
+          paymentId={this.state.paymentId}
         />
         <RingLoader
           css={override}

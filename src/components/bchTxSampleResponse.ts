@@ -1,4 +1,22 @@
-export default {
+let bchTxSampleResponse: {
+  network: string
+  currency: string
+  outputs: {
+    script: string
+    amount: number
+    address: string
+    type: string
+  }[]
+  time: string
+  expires: string
+  status: string
+  merchantId: string
+  memo: string
+  fiatSymbol: string
+  fiatRate: number
+  paymentUrl: string
+  paymentId: string
+} = {
   network: "main",
   currency: "BCH",
   outputs: [
@@ -17,7 +35,7 @@ export default {
   ],
   time: "2019-08-13T19:08:24.672Z",
   expires: "2019-08-13T19:23:24.672Z",
-  status: "open",
+  status: "expired",
   merchantId: "00000000-0000-0000-0000-000000000000",
   memo: "Payment request for invoice Ejw1vDyG4VELGKa3LMYnJa",
   fiatSymbol: "BCH",
@@ -25,3 +43,5 @@ export default {
   paymentUrl: "https://pay.bitcoin.com/i/Ejw1vDyG4VELGKa3LMYnJa",
   paymentId: "Ejw1vDyG4VELGKa3LMYnJa"
 }
+
+export default bchTxSampleResponse

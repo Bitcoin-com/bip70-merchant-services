@@ -37,7 +37,6 @@
     "bootstrap-less": "^3.3.8",
     "react": "^16.9.0",
     "react-copy-to-clipboard": "^5.0.1",
-    "react-countdown-clock": "^2.6.0",
     "react-countdown-now": "^2.1.1",
     "react-dom": "^16.5.2",
     "react-spinners": "^0.5.12",

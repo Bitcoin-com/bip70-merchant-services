@@ -1,8 +1,8 @@
 import * as React from "react"
-// import QR from "../qr.png"
 import ReactTooltip from "react-tooltip"
-import ReactCountdownClock from "react-countdown-clock"
 import { Copied } from "./Copied"
+import { Details } from "./Details"
+import { Limit } from "./Limit"
 import { Popover, PopoverHeader, PopoverBody } from "reactstrap"
 import axios from "axios"
 import { CopyToClipboard } from "react-copy-to-clipboard"
@@ -35,17 +35,13 @@ export class Open extends React.Component<OpenProps, any> {
     this.toggleStatus = this.toggleStatus.bind(this)
     // calculate time
     let then: Date = new Date(this.props.expires)
-    let now: Date = new Date()
-    let diff: number = then.getTime() - now.getTime()
-    let seconds: number = diff / 1000
-    let secondsBetweenDates = Math.abs(seconds)
     this.state = {
       urlPopoverOpen: false,
       detailsPopoverOpen: false,
       limitPopoverOpen: false,
       BCHPrice: 0,
-      secondsBetweenDates: secondsBetweenDates,
-      loading: true
+      loading: true,
+      then: then.getTime()
     }
   }
 
@@ -86,25 +82,19 @@ export class Open extends React.Component<OpenProps, any> {
   }
 
   toggleLimitPopOver() {
-    if (this.state.limitPopoverOpen === false) {
-      this.setState({
-        limitPopoverOpen: !this.state.limitPopoverOpen
-      })
-      setTimeout(() => {
-        this.setState({
-          limitPopoverOpen: !this.state.limitPopoverOpen
-        })
-      }, 3000)
-    }
+    this.setState({
+      limitPopoverOpen: !this.state.limitPopoverOpen
+    })
   }
 
-  toggleStatus() {
+  toggleStatus(): void {
     this.props.toggleStatus()
   }
 
   render(): JSX.Element {
     return (
       <div id="open">
+        {/* Loader */}
         <CircleLoader
           css={override}
           sizeUnit={"px"}
@@ -112,7 +102,9 @@ export class Open extends React.Component<OpenProps, any> {
           color="#0ac18e"
           loading={this.state.loading}
         />
+
         <div className="row" id="openHeader">
+          {/* Copy to Clipboard */}
           <CopyToClipboard text={this.props.paymentUrl}>
             <div
               data-tip
@@ -123,30 +115,36 @@ export class Open extends React.Component<OpenProps, any> {
               <i className="brandGreen far fa-copy" />
             </div>
           </CopyToClipboard>
+
+          {/* Tooltip */}
           <ReactTooltip id="copy" effect="solid" type="dark" place="top">
             <span>Copy Payment URL</span>
           </ReactTooltip>
+
+          {/* Amount and Symbol */}
           <div className="col-md-8">
             {this.props.amount} {this.props.symbol}
           </div>
+
+          {/* Toggle Details Popover */}
           <div
             data-tip
             data-for="details"
             className="col-md-2"
+            id="detailsCountdown"
             onClick={this.toggleDetailsPopOver}
           >
-            <ReactCountdownClock
-              seconds={this.state.secondsBetweenDates}
-              color="#0ac18e"
-              alpha={0.9}
-              size={50}
-              onComplete={this.toggleStatus}
-            />
+            <Countdown zeroPadTime={0} date={this.state.then} />{" "}
           </div>
+
+          {/* Tooltip */}
           <ReactTooltip id="details" effect="solid" type="dark" place="top">
             <span>View Payment Details</span>
           </ReactTooltip>
         </div>
+
+        {/* QR Code */}
+        {/* Copy to Clipboard */}
         <CopyToClipboard text={this.props.paymentUrl}>
           <div className="row" id="qr" onClick={this.toggleUrlPopOver}>
             <p className="col-md-12">
@@ -154,6 +152,8 @@ export class Open extends React.Component<OpenProps, any> {
             </p>
           </div>
         </CopyToClipboard>
+
+        {/* Popover */}
         <div id="popOver" ref={popOver => (this.popOverElement = popOver)} />
         <Popover
           placement="top"
@@ -167,111 +167,28 @@ export class Open extends React.Component<OpenProps, any> {
             <Copied paymentUrl={this.props.paymentUrl} />
           </PopoverBody>
         </Popover>
-        <Popover
-          placement="top"
-          isOpen={this.state.detailsPopoverOpen}
-          target="popOver"
-          toggle={this.toggleDetailsPopOver}
-          className="detailsPopOver"
-        >
-          <PopoverHeader>
-            <div id="detailsHeader" className="row">
-              <div className="col-md-12">
-                <p id="" className="">
-                  Please send your payment within
-                  <span className="red">
-                    {Date.now()}= foo -{this.state.secondsBetweenDates}
-                    <Countdown date={this.state.secondsBetweenDates} />
-                  </span>
-                </p>
-              </div>
-              <div className="col-md-12">
-                <p id="" className="">
-                  1 BCH = {this.state.BCHPrice} USD
-                </p>
-              </div>
-            </div>
-          </PopoverHeader>
-          <PopoverBody>
-            <div id="detailsBody" className="row">
-              <div className="col-md-12">
-                <div className="row">
-                  <div className="col-md-6">
-                    <p id="" className="text-left">
-                      Subtotal
-                    </p>
-                  </div>
-                  <div className="col-md-6">
-                    <p id="" className="text-right">
-                      0.01 BCH
-                    </p>
-                  </div>
-                </div>
-              </div>
-              <div className="col-md-12">
-                <div className="row">
-                  <div className="col-md-6">
-                    <p id="" className="text-left">
-                      Network Cost
-                    </p>
-                  </div>
-                  <div className="col-md-6">
-                    <p id="" className="text-right">
-                      0.01 BCH
-                    </p>
-                  </div>
-                </div>
-              </div>
-              <div className="col-md-12">
-                <div className="row font-weight-bold">
-                  <div className="col-md-6">
-                    <p id="" className="text-left">
-                      Total Cost
-                    </p>
-                  </div>
-                  <div className="col-md-6">
-                    <p id="" className="text-right">
-                      0.01 BCH
-                    </p>
-                  </div>
-                </div>
-              </div>
-              <div className="col-md-12 text-center brandGreen">
-                <div onClick={this.toggleUrlPopOver}>
-                  Copy Payment URL <i className="brandGreen far fa-copy" />
-                </div>
-              </div>
-            </div>
-          </PopoverBody>
-        </Popover>
-        <Popover
-          placement="top"
-          isOpen={this.state.limitPopoverOpen}
-          target="popOver"
-          toggle={this.toggleLimitPopOver}
-          className="limitPopOver"
-        >
-          <PopoverHeader>
-            <div id="limitHeader" className="row">
-              <div className="col-md-12">
-                <p id="" className="">
-                  <i className="brandGreen fas fa-clock" />
-                  Awaiting Payment
-                </p>
-              </div>
-            </div>
-          </PopoverHeader>
-          <PopoverBody>
-            <div id="detailsBody" className="row">
-              <div className="col-md-12">
-                <p id="" className="">
-                  This invoice will expire soon. Please send your payment within
-                  the remaining
-                </p>
-              </div>
-            </div>
-          </PopoverBody>
-        </Popover>
+
+        {/* Details Popover */}
+        <Details
+          amount={this.props.amount}
+          symbol={this.props.symbol}
+          paymentUrl={this.props.paymentUrl}
+          toggleUrlPopOver={this.toggleUrlPopOver}
+          toggleDetailsPopOver={this.toggleDetailsPopOver}
+          detailsPopoverOpen={this.state.detailsPopoverOpen}
+          then={this.state.then}
+          BCHPrice={this.state.BCHPrice}
+        />
+
+        {/* Limit Popover */}
+        <Limit
+          amount={this.props.amount}
+          symbol={this.props.symbol}
+          paymentUrl={this.props.paymentUrl}
+          toggleLimitPopOver={this.toggleLimitPopOver}
+          limitPopoverOpen={this.state.limitPopoverOpen}
+          then={this.state.then}
+        />
       </div>
     )
   }
