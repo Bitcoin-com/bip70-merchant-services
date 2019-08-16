@@ -35,16 +35,11 @@ export class Open extends React.Component<OpenProps, any> {
     this.toggleStatus = this.toggleStatus.bind(this)
     // calculate time
     let then: Date = new Date(this.props.expires)
-    let now: Date = new Date()
-    let diff: number = then.getTime() - now.getTime()
-    let seconds: number = diff / 1000
-    // let secondsBetweenDates = Math.abs(seconds)
     this.state = {
       urlPopoverOpen: false,
       detailsPopoverOpen: false,
       limitPopoverOpen: false,
       BCHPrice: 0,
-      secondsBetweenDates: then.getTime(),
       loading: true,
       then: then.getTime()
     }
