@@ -6,6 +6,7 @@ import { Info } from "./Info"
 import axios from "axios"
 import { AxiosResponse } from "axios"
 import { css } from "@emotion/core"
+import { w3cwebsocket } from "websocket"
 // First way to import
 import { RingLoader } from "react-spinners"
 const override = css`
@@ -36,25 +37,40 @@ export class BIP70 extends React.Component<BIP70Props, any> {
   }
 
   async componentDidMount(): Promise<any> {
-    // GET existing invoice
-    // let paymentId: string = "EWe9kqdfnV2CnLNyxP9Fc9"
-    // const invoice: AxiosResponse = await axios.get(
-    //   `https://pay.bitcoin.com/s/${paymentId}`,
-    //   { headers: { Accept: "application/json" } }
-    // )
+    // GET existing invoice using websocket
+    let splitPath = location.pathname.split('/')
+    const paymentId: string = splitPath[splitPath.length - 1]
+    // let paymentId: string = "EW4CNuFCmYrPa7PjvwPcv8"
+
+    const client = new w3cwebsocket (`wss://pay.bitcoin.com/s/${paymentId}`, "echo-protocol");
+
+    client.onerror = function() {
+        console.log("Connection Error");
+    }
+
+    const self = this
+    client.onmessage = async function(e: any) {
+      if (typeof e.data === "string") {
+          self.updateInvoice(JSON.parse(e.data))
+          console.log(e);
+      }
+    }
 
     // POST to create new invoice
-    const invoice: AxiosResponse = await axios.post(
-      `https://pay.bitcoin.com/create_invoice`,
-      txSampleRequest
-    )
+    // const invoice: AxiosResponse = await axios.post(
+    //   `https://pay.bitcoin.com/create_invoice`,
+    //   txSampleRequest
+    // )
 
     // Uncomment for Sample Response
-    // this.setState(txSampleResponse)
+    // this.updateInvoice(txSampleResponse)
 
     // Uncomment for actual Response
-    this.setState(invoice.data)
+    // this.updateInvoice(invoice.data)
+  }
 
+  async updateInvoice(invoice: object): Promise<any> {
+    this.setState(invoice)
     this.setState({
       loading: false,
       qr: `https://pay.bitcoin.com/qr/${this.state.paymentId}`
