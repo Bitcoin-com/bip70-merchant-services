@@ -38,7 +38,7 @@ export class BIP70 extends React.Component<BIP70Props, any> {
 
   async componentDidMount(): Promise<any> {
     // GET existing invoice using websocket
-    let splitPath = location.pathname.split('/')
+    let splitPath = location.pathname.split("/")
     const paymentId: string = splitPath[splitPath.length - 1]
     // let paymentId: string = "EW4CNuFCmYrPa7PjvwPcv8"
 
