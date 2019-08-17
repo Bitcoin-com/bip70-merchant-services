@@ -137,6 +137,7 @@ export class BIP70 extends React.Component<BIP70Props, any> {
           email={this.state.email}
           merchant={this.state.name}
           paymentId={this.state.paymentId}
+          image={this.state.image}
         />
         <RingLoader
           css={override}
