@@ -6,7 +6,7 @@ import Countdown from "react-countdown-now"
 export interface LimitProps {
   amount: number
   symbol: string
-  paymentUrl: string
+  paymentUri: string
   toggleLimitPopOver: Function
   limitPopoverOpen: boolean
   then: number
