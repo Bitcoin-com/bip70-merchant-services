@@ -52,7 +52,7 @@ export class BIP70 extends React.Component<BIP70Props, any> {
     client.onmessage = async function(e: any) {
       if (typeof e.data === "string") {
           self.updateInvoice(JSON.parse(e.data))
-          console.log(e);
+          // console.log(e);
       }
     }
 
@@ -125,7 +125,9 @@ export class BIP70 extends React.Component<BIP70Props, any> {
   render(): JSX.Element {
     let badgerButton: any
     if (this.state.status === "open") {
-      badgerButton = <BadgerButton />
+      badgerButton = <BadgerButton
+          paymentUrl={this.state.paymentUrl}
+      />
     }
 
     return (
