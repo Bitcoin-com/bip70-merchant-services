@@ -17,7 +17,7 @@ const override = css`
 
 export interface OpenProps {
   amount: number
-  paymentUrl: string
+  paymentUri: string
   toggleStatus: Function
   symbol: string
   time: string
@@ -105,7 +105,7 @@ export class Open extends React.Component<OpenProps, any> {
 
         <div className="row" id="openHeader">
           {/* Copy to Clipboard */}
-          <CopyToClipboard text={this.props.paymentUrl}>
+          <CopyToClipboard text={this.props.paymentUri}>
             <div
               data-tip
               data-for="copy"
