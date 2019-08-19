@@ -7,7 +7,7 @@ import Countdown from "react-countdown-now"
 export interface DetailsProps {
   amount: number
   symbol: string
-  paymentUrl: string
+  paymentUri: string
   toggleUrlPopOver: Function
   toggleDetailsPopOver: Function
   detailsPopoverOpen: boolean
@@ -110,7 +110,7 @@ export class Details extends React.Component<DetailsProps, any> {
                     address, required amount and securely.
                   </span>
                 </ReactTooltip>
-                <CopyToClipboard text={this.props.paymentUrl}>
+                <CopyToClipboard text={this.props.paymentUri}>
                   <div
                     data-tip
                     data-for="secondCopy"

@@ -26,6 +26,10 @@ export class Card extends React.Component<CardProps, any> {
     this.props.toggleStatus()
   }
 
+  setUri(): string {
+    return `bitcoincash:?r=${this.props.paymentUrl}`
+  }
+
   render(): JSX.Element {
     let open, expired, paid
     if (this.props.status === "open") {
@@ -33,7 +37,7 @@ export class Card extends React.Component<CardProps, any> {
         <Open
           amount={this.props.amount}
           toggleStatus={this.toggleStatus}
-          paymentUrl={this.props.paymentUrl}
+          paymentUri={this.setUri()}
           symbol={this.props.symbol}
           time={this.props.time}
           expires={this.props.expires}

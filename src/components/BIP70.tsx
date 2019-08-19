@@ -38,7 +38,7 @@ export class BIP70 extends React.Component<BIP70Props, any> {
 
   async componentDidMount(): Promise<any> {
     // GET existing invoice using websocket
-    let splitPath = location.pathname.split('/')
+    let splitPath = location.pathname.split("/")
     const paymentId: string = splitPath[splitPath.length - 1]
     // let paymentId: string = "EW4CNuFCmYrPa7PjvwPcv8"
 
@@ -52,7 +52,7 @@ export class BIP70 extends React.Component<BIP70Props, any> {
     client.onmessage = async function(e: any) {
       if (typeof e.data === "string") {
           self.updateInvoice(JSON.parse(e.data))
-          console.log(e);
+          // console.log(e);
       }
     }
 
@@ -125,7 +125,9 @@ export class BIP70 extends React.Component<BIP70Props, any> {
   render(): JSX.Element {
     let badgerButton: any
     if (this.state.status === "open") {
-      badgerButton = <BadgerButton />
+      badgerButton = <BadgerButton
+          paymentUrl={this.state.paymentUrl}
+      />
     }
 
     return (
@@ -137,6 +139,7 @@ export class BIP70 extends React.Component<BIP70Props, any> {
           email={this.state.email}
           merchant={this.state.name}
           paymentId={this.state.paymentId}
+          image={this.state.image}
         />
         <RingLoader
           css={override}

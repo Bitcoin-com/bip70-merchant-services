@@ -8,6 +8,7 @@ export interface InfoProps {
   email: string
   merchant: string
   paymentId: string
+  image: string
 }
 
 export class Info extends React.Component<InfoProps, any> {
@@ -30,7 +31,7 @@ export class Info extends React.Component<InfoProps, any> {
     return (
       <div className="info">
         <h1>{this.props.memo}</h1>
-        <h2>{this.props.merchantId}</h2>
+        <img src={this.props.image}/>
         {needHelp}
       </div>
     )

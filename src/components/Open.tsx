@@ -17,7 +17,7 @@ const override = css`
 
 export interface OpenProps {
   amount: number
-  paymentUrl: string
+  paymentUri: string
   toggleStatus: Function
   symbol: string
   time: string
@@ -105,7 +105,7 @@ export class Open extends React.Component<OpenProps, any> {
 
         <div className="row" id="openHeader">
           {/* Copy to Clipboard */}
-          <CopyToClipboard text={this.props.paymentUrl}>
+          <CopyToClipboard text={this.props.paymentUri}>
             <div
               data-tip
               data-for="copy"
@@ -145,7 +145,7 @@ export class Open extends React.Component<OpenProps, any> {
 
         {/* QR Code */}
         {/* Copy to Clipboard */}
-        <CopyToClipboard text={this.props.paymentUrl}>
+        <CopyToClipboard text={this.props.paymentUri}>
           <div className="row" id="qr" onClick={this.toggleUrlPopOver}>
             <p className="col-md-12">
               <img src={this.props.qr} alt="QR Code" />
@@ -164,7 +164,7 @@ export class Open extends React.Component<OpenProps, any> {
           className="urlPopOver"
         >
           <PopoverBody>
-            <Copied paymentUrl={this.props.paymentUrl} />
+            <Copied paymentUrl={this.props.paymentUri} />
           </PopoverBody>
         </Popover>
 
@@ -172,7 +172,7 @@ export class Open extends React.Component<OpenProps, any> {
         <Details
           amount={this.props.amount}
           symbol={this.props.symbol}
-          paymentUrl={this.props.paymentUrl}
+          paymentUri={this.props.paymentUri}
           toggleUrlPopOver={this.toggleUrlPopOver}
           toggleDetailsPopOver={this.toggleDetailsPopOver}
           detailsPopoverOpen={this.state.detailsPopoverOpen}
@@ -184,7 +184,7 @@ export class Open extends React.Component<OpenProps, any> {
         <Limit
           amount={this.props.amount}
           symbol={this.props.symbol}
-          paymentUrl={this.props.paymentUrl}
+          paymentUri={this.props.paymentUri}
           toggleLimitPopOver={this.toggleLimitPopOver}
           limitPopoverOpen={this.state.limitPopoverOpen}
           then={this.state.then}
