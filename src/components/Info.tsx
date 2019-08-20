@@ -28,10 +28,12 @@ export class Info extends React.Component<InfoProps, any> {
         />
       )
     }
+    let image = <img src={this.props.image}/>
+    let name = <h1>Pay To: {this.props.merchant}</h1>
     return (
       <div className="info">
         <h1>{this.props.memo}</h1>
-        <img src={this.props.image}/>
+        {name}
         {needHelp}
       </div>
     )

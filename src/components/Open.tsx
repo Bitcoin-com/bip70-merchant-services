@@ -134,7 +134,7 @@ export class Open extends React.Component<OpenProps, any> {
             id="detailsCountdown"
             onClick={this.toggleDetailsPopOver}
           >
-            <Countdown zeroPadTime={0} date={this.state.then} />{" "}
+            <Countdown zeroPadTime={2} date={this.state.then} daysInHours={true} />{" "}
           </div>
 
           {/* Tooltip */}
