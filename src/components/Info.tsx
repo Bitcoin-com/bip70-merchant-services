@@ -1,10 +1,12 @@
 import * as React from "react"
 import { NeedHelp } from "./NeedHelp"
+import VerifiedCheck from "../verified-account-48.png"
 
 export interface InfoProps {
   status: string
   memo: string
   merchantId: string
+  merchantVerified: boolean
   email: string
   merchant: string
   paymentId: string
@@ -28,8 +30,9 @@ export class Info extends React.Component<InfoProps, any> {
         />
       )
     }
-    let image = <img src={this.props.image}/>
-    let name = <h1>Pay To: {this.props.merchant}</h1>
+    let image = <img className="logo" src={this.props.image}/>
+    let check = this.props.merchantVerified ? <img className="check" src={VerifiedCheck}/> : ""
+    let name = <h1>Pay To: {this.props.merchant} {check}</h1>
     return (
       <div className="info">
         <h1>{this.props.memo}</h1>
