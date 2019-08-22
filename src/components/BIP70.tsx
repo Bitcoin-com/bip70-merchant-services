@@ -129,7 +129,8 @@ export class BIP70 extends React.Component<BIP70Props, any> {
           paymentUrl={this.state.paymentUrl}
       />
     }
-    let merchantVerified = this.state.verification === "UNVERIFIED" ? false : true
+    let merchantVerified = !this.state.verification ||
+      this.state.verification === "UNVERIFIED" ? false : true
     return (
       <div className="container">
         <Info
