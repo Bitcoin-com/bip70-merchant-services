@@ -5,7 +5,6 @@ import VerifiedCheck from "../verified-account-48.png"
 export interface InfoProps {
   status: string
   memo: string
-  merchantId: string
   merchantVerified: boolean
   email: string
   merchant: string

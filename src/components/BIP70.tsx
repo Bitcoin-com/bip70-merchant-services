@@ -136,10 +136,9 @@ export class BIP70 extends React.Component<BIP70Props, any> {
         <Info
           status={this.state.status}
           memo={this.state.memo}
-          merchantId={this.state.merchantId}
           merchantVerified={merchantVerified}
           email={this.state.email}
-          merchant={this.state.name}
+          merchant={this.state.merchantName}
           paymentId={this.state.paymentId}
           image={this.state.image}
         />
