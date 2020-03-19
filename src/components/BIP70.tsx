@@ -1,5 +1,4 @@
 import * as React from "react"
-import { BadgerButton } from "./BadgerButton"
 import { PoweredBy } from "./PoweredBy"
 import { Card } from "./Card"
 import { Info } from "./Info"
@@ -123,12 +122,6 @@ export class BIP70 extends React.Component<BIP70Props, any> {
   }
 
   render(): JSX.Element {
-    let badgerButton: any
-    if (this.state.status === "open") {
-      badgerButton = <BadgerButton
-          paymentUrl={this.state.paymentUrl}
-      />
-    }
     let merchantVerified = !this.state.verification ||
       this.state.verification === "UNVERIFIED" ? false : true
     return (
@@ -160,7 +153,6 @@ export class BIP70 extends React.Component<BIP70Props, any> {
           expires={this.state.expires}
           qr={this.state.qr}
         />
-        {badgerButton}
         <PoweredBy />
       </div>
     )
