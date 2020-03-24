@@ -3,13 +3,14 @@ import ReactTooltip from "react-tooltip"
 import { Copied } from "./Copied"
 import { Details } from "./Details"
 import { Limit } from "./Limit"
-import { Popover, PopoverHeader, PopoverBody } from "reactstrap"
+import { Popover, PopoverBody } from "reactstrap"
 import axios from "axios"
 import { CopyToClipboard } from "react-copy-to-clipboard"
-import Countdown from "react-countdown-now"
 import { AxiosResponse } from "axios"
 import { css } from "@emotion/core"
 import { CircleLoader } from "react-spinners"
+import { BadgerBadge } from "badger-components-react"
+
 const override = css`
   display: block;
   margin: 0 auto;
@@ -94,22 +95,24 @@ export class Open extends React.Component<OpenProps, any> {
   render(): JSX.Element {
     return (
       <div id="open">
-        {/* Loader */}
-        <CircleLoader
-          css={override}
-          sizeUnit={"px"}
-          size={150}
-          color="#0ac18e"
-          loading={this.state.loading}
-        />
 
         <div className="row" id="openHeader">
+          <div id="badgerButton">
+            <BadgerBadge
+              paymentRequestUrl={this.props.paymentUri}
+              tag={"Pay Invoice"}
+              successFn={(tx) => console.log(tx)}
+              failFn={(err) => console.log(err)}
+            />
+          </div>
+
           {/* Copy to Clipboard */}
           <CopyToClipboard text={this.props.paymentUri}>
             <div
               data-tip
               data-for="copy"
               className="col-md-2"
+              id="copyButton"
               onClick={this.toggleUrlPopOver}
             >
               <i className="brandGreen far fa-copy" />
@@ -120,38 +123,7 @@ export class Open extends React.Component<OpenProps, any> {
           <ReactTooltip id="copy" effect="solid" type="dark" place="top">
             <span>Copy Payment URL</span>
           </ReactTooltip>
-
-          {/* Amount and Symbol */}
-          <div className="col-md-8">
-            {this.props.amount} {this.props.symbol}
-          </div>
-
-          {/* Toggle Details Popover */}
-          <div
-            data-tip
-            data-for="details"
-            className="col-md-2"
-            id="detailsCountdown"
-            onClick={this.toggleDetailsPopOver}
-          >
-            <Countdown zeroPadTime={2} date={this.state.then} daysInHours={true} />{" "}
-          </div>
-
-          {/* Tooltip */}
-          <ReactTooltip id="details" effect="solid" type="dark" place="top">
-            <span>View Payment Details</span>
-          </ReactTooltip>
         </div>
-
-        {/* QR Code */}
-        {/* Copy to Clipboard */}
-        <CopyToClipboard text={this.props.paymentUri}>
-          <div className="row" id="qr" onClick={this.toggleUrlPopOver}>
-            <p className="col-md-12">
-              <img src={this.props.qr} alt="QR Code" />
-            </p>
-          </div>
-        </CopyToClipboard>
 
         {/* Popover */}
         <div id="popOver" ref={popOver => (this.popOverElement = popOver)} />
