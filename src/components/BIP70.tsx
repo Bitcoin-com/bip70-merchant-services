@@ -144,7 +144,7 @@ export class BIP70 extends React.Component<BIP70Props, any> {
       <div className="container">
         <Notice>
           <p>
-          This feature has been merged into <Link href="https://wallet.bitcoin.com">Bitcoin.com Wallet</Link>. You can now send BCH using email, sms, instant messenger, social apps, and more. 
+          This feature is currently under maintenance. Please use <Link href="https://wallet.bitcoin.com">Bitcoin.com Wallet</Link> for sending and receiving payments. 
           </p>
         </Notice>
         <Info
