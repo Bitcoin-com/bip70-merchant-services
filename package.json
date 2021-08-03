@@ -44,7 +44,7 @@
     "react-tooltip": "^3.10.0",
     "reactstrap": "^7.0.2",
     "slp-sdk": "^4.7.0",
-    "styled-components": "^5.2.1",
+    "styled-components": "^5.0.1",
     "websocket": "^1.0.29"
   },
   "devDependencies": {

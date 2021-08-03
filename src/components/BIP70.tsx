@@ -8,22 +8,6 @@ import { css } from "@emotion/core"
 import { w3cwebsocket } from "websocket"
 // First way to import
 import { RingLoader } from "react-spinners"
-import styled from "styled-components";
-
-const Notice = styled.div`
-  text-align: center;
-  padding: 15px;
-  padding-top: 25px;
-`;
-
-const Link = styled.a`
-  display: inline-block;
-  letter-spacing: 0;
-  font-weight: 600;
-  text-decoration: none;
-  color: #0ac18e;
-`;
-
 const override = css`
   display: block;
   margin: 0 auto;
@@ -142,11 +126,6 @@ export class BIP70 extends React.Component<BIP70Props, any> {
       this.state.verification === "UNVERIFIED" ? false : true
     return (
       <div className="container">
-        <Notice>
-          <p>
-          This feature is currently under maintenance. Please use <Link href="https://wallet.bitcoin.com">Bitcoin.com Wallet</Link> for sending and receiving payments. 
-          </p>
-        </Notice>
         <Info
           status={this.state.status}
           memo={this.state.memo}
